@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>片付け・整理収納ブログ｜山梨・甲府の片付けサポート｜totonou（トトノウ）</title>
+<meta content="山梨県の整理収納アドバイザー・内藤ちえこの公式ブログ。お家と心を整える片付けのヒントやマインドセット、日々の活動を綴ります。" name="description"/>
+<link href="https://totonou.me/blog.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=M+PLUS+Rounded+1c:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<style>
+    /* ========================================
+      🎨 カラー・フォント設定（index.htmlと完全同期）
+    ======================================== */
+    :root {
+      --bg:        #ffffff;
+      --bg-light:  #edf5fa;
+      --accent:    #5ba3c2;
+      --accent2:   #8ecae6;
+      --accent3:   #2980a8;
+      --text:      #333333; 
+      --sub:       #456375;
+      --line:      #d4e9f4;
+      --line-light: #eee;
+      --white:     #ffffff;
+      --sans:      'Noto Sans JP', sans-serif;
+      --rounded:   'M PLUS Rounded 1c', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body { 
+      max-width: 100vw;
+      overflow-x: hidden; 
+      scroll-behavior: smooth; 
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: #ffffff;
+      color: var(--text);
+      font-size: clamp(14px, 2.5vw, 15px); 
+      font-weight: 400; 
+      line-height: 1.85;
+    }
+
+    .ib {
+      display: inline-block;
+      white-space: nowrap; 
+    }
+    @media (min-width: 769px) {
+      .ib { white-space: normal; }
+    }
+
+    /* ========================================
+       Header（共通パーツ）
+    ======================================== */
+    .header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(247, 251, 253, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 12px 6%;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line-light);
+    }
+    .nav-logo {
+      font-family: var(--rounded);
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-text div { font-size: clamp(1rem, 4vw, 1.3rem); font-weight: 700; line-height: 1; }
+    .nav-logo span { font-size: clamp(0.6rem, 2vw, 0.75rem); font-family: var(--sans); font-weight: 400; letter-spacing: 0.1em; color: var(--sub); display: block; margin-top: 2px; }
+    
+    .header-tel {
+      margin-left: auto;
+      margin-right: clamp(10px, 3vw, 30px);
+      text-decoration: none;
+      color: var(--accent3);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 3vw, 1.1rem);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0; 
+    }
+    .header-tel svg { width: 1em; height: 1em; }
+
+    .menu-btn {
+      background: none; border: none; cursor: pointer; z-index: 1100; width: 30px; height: 24px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .menu-btn span { display: block; width: 100%; height: 2px; background-color: var(--accent); transition: all 0.3s; }
+    .menu-btn.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+    .nav-menu {
+      position: fixed; top: 0; right: 0; transform: translateX(100%); visibility: hidden; width: 250px; height: 100vh; background: rgba(247, 251, 253, 0.98); box-shadow: -5px 0 20px rgba(0,0,0,0.1); transition: transform 0.4s ease, visibility 0.4s; z-index: 1050; padding-top: 80px;
+    }
+    .nav-menu.active { transform: translateX(0); visibility: visible; }
+    .nav-menu ul { list-style: none; text-align: left; padding: 0 30px; }
+    .nav-menu ul li { margin-bottom: 25px; border-bottom: 1px solid var(--line-light); padding-bottom: 10px; }
+    .nav-menu ul li a { text-decoration: none; color: var(--text); font-size: 1rem; font-weight: 500; display: block; transition: color 0.3s; }
+    .nav-menu ul li a:hover { color: var(--accent); }
+
+    /* ========================================
+       Main Content Area（ブログ一覧）
+    ======================================== */
+    .main-layout {
+      padding: 140px 6% 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-family: var(--rounded);
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .page-lead {
+      text-align: center;
+      color: #000000;
+      font-size: 0.95rem;
+      margin-bottom: 50px;
+    }
+
+    /* グリッドレイアウト */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 35px 25px;
+    }
+
+    /* ブログカード共通設定 */
+    .blog-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      border: 1px solid #000;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .blog-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 60%; /* 5:3のアスペクト比 */
+      overflow: hidden;
+      background: var(--bg-light);
+    }
+    .blog-img-wrap img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .blog-category {
+      position: absolute;
+      top: 15px; left: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--accent3);
+      padding: 3px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 4px;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .blog-content {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .blog-meta {
+      font-size: 0.85rem;
+      color: var(--sub);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .blog-meta svg {
+      color: var(--accent);
+    }
+
+    .blog-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.5;
+      min-height: calc(1.15rem * 1.5 * 2);
+      margin-bottom: 12px;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-excerpt {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+
+    /* ブログ絞り込み・検索 */
+    .blog-tools {
+      max-width: 900px;
+      margin: 0 auto 35px;
+      background: var(--white);
+      border: 1px solid var(--line-light);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .blog-search {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      margin-bottom: 16px;
+    }
+
+    .blog-search:focus {
+      border-color: var(--accent);
+      background: var(--white);
+    }
+
+    .blog-tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .blog-filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .blog-filter-btn {
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--accent3);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .blog-filter-btn.active,
+    .blog-filter-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .blog-sort {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+    }
+
+    .blog-result-count {
+      margin-top: 12px;
+      color: var(--sub);
+      font-size: 0.85rem;
+      text-align: right;
+    }
+
+    .blog-card.hidden {
+      display: none;
+    }
+
+    /* ========================================
+       Footer
+    ======================================== */
+    .footer { background: var(--text); color: var(--white); text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer p { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin: 5px 0; letter-spacing: 0.05em; }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 768px) {
+      .header { padding: 10px 12px; }
+      .nav-logo img { height: 28px; margin-right: 6px; }
+      .nav-logo-text div { font-size: 1.05rem; }
+      .nav-logo span { font-size: 0.55rem; letter-spacing: 0; white-space: nowrap; }
+      .header-tel { margin-right: 5px; font-size: 0.75rem; gap: 3px; }
+      .menu-btn { width: 24px; }
+      .nav-menu { width: 80%; } 
+
+      .main-layout { padding: 110px 4% 40px; }
+      .page-lead { margin-bottom: 35px; }
+      .blog-grid { grid-template-columns: 1fr; gap: 30px; }
+      .blog-content { padding: 18px; }
+      .blog-title { font-size: 1.1rem; }
+
+      .blog-tools { padding: 18px; margin-bottom: 28px; }
+      .blog-tool-row { align-items: stretch; }
+      .blog-filter-buttons { width: 100%; }
+      .blog-filter-btn { flex: 1 1 auto; }
+      .blog-sort { width: 100%; margin-top: 2px; }
+      .blog-result-count { text-align: left; }
+    }
+  
+
+.header-blog-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-right: 28px;
+  margin-left: 18px;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.header-blog-btn:hover {
+  opacity: 0.75;
+}
+
+.header-blog-btn .blog-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px !important;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-blog-btn i,
+.header-blog-btn svg {
+  color: var(--accent3);
+  font-size: 0.95rem;
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 768px) {
+  .header-blog-btn {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .header-blog-btn .blog-icon-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header-blog-btn i,
+  .header-blog-btn svg {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== blog list requested final adjustments ===== */
+html, body { background: #ffffff !important; }
+body { background: #ffffff !important; }
+.main-layout { background: #ffffff !important; }
+.blog-tools, .blog-search, .blog-tool-row, .blog-filter-buttons, .blog-filter-btn, .blog-sort, .blog-result-count { display: none !important; }
+.header-blog-btn .blog-icon-circle {
+  width: 36px !important; height: 36px !important; border-radius: 4px !important;
+  background: var(--bg-light) !important; color: var(--accent3) !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  font-size:0.62rem !important; font-weight:700 !important; font-family:var(--sans) !important;
+}
+.header-blog-btn i, .header-blog-btn svg { display:none !important; }
+@media (max-width: 768px) {
+  .nav-menu { padding-top: 58px !important; }
+  .nav-menu ul { padding: 0 24px !important; }
+  .nav-menu ul li { margin-bottom: 10px !important; padding-bottom: 6px !important; }
+  .nav-menu ul li a { font-size: 0.88rem !important; line-height: 1.35 !important; }
+  .header-blog-btn { margin-left:0 !important; margin-right:10px !important; }
+  .header-blog-btn .blog-icon-circle { width:34px !important; height:34px !important; font-size:0.58rem !important; }
+}
+
+
+/* requested header blog text black */
+.header-blog-btn .blog-icon-circle {
+  color: #222 !important;
+border: 1px solid #222 !important;
+}
+.header-blog-btn .blog-icon-circle::after {
+  color: #222 !important;
+}
+
+
+
+.blog-body h2.article-subheading {
+  font-size: clamp(1.05rem, 2.3vw, 1.28rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+}
+
+
+
+time { color: #000 !important; }
+.article-date, .post-date, .blog-date { color: #000 !important; }
+</style>
+</head>
+<body>
+<header class="header">
+<a class="nav-logo" href="index.html">
+<img alt="totonou｜整理収納" src="images/logo.JPG"/>
+<div class="nav-logo-text">
+<div>toto<strong style="color: var(--accent); font-weight: inherit;">n</strong>ou</div>
+<span>山梨県の整理収納アドバイザー</span>
+</div>
+</a>
+<a class="header-tel" href="tel:09055338601">
+<i class="fas fa-phone-alt"></i>
+<span style="white-space: nowrap; word-break: keep-all;">090-5533-8601</span>
+</a>
+<a href="blog.html" class="header-blog-btn" aria-label="ブログ一覧へ">
+  <span class="blog-icon-circle">blog</span>
+</a>
+<button aria-label="メニューを開く" class="menu-btn" id="menu-btn">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav class="nav-menu" id="nav-menu">
+<ul>
+<li><a href="index.html#about">初めての方へ（ご挨拶）</a></li>
+<li><a href="index.html#flow">ご利用の流れ</a></li>
+<li><a href="index.html#services">サービス内容・料金</a></li>
+<li><a href="index.html#area">対応エリア</a></li>
+<li><a href="index.html#before-after">ビフォーアフター実例</a></li>
+<li><a href="index.html#testimonials">お客様の声</a></li>
+<li><a href="index.html#profile">プロフィール</a></li>
+<li><a href="index.html#contact">無料相談（LINE・電話）</a></li>
+<li><a href="blog.html">ブログ</a></li>
+</ul>
+</nav>
+</header>
+<main class="main-layout">
+<h1 class="page-title">BLOG</h1>
+<p class="page-lead">お家と心を整える片付けのヒントやマインドセット、日々の活動を綴ります。</p>
+<div class="blog-grid" id="blog-grid">
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-20" data-excerpt="全50回にわたってお届けしてきたお片付けのヒント。最後に一番お伝えしたいのは、片付けとは単なる家事の延長ではなく、「これからの新しい生き方を選ぶためのセルフカウ…" data-search="片付けのプロセスを通じて、これからの生き方を選び取る｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.20 片付けのプロセスを通じて、これからの生き方を選び取る 全50回にわたってお届けしてきたお片付けのヒント。最後に一番お伝えしたいのは、片付けとは単なる家事の延長ではなく、「これからの新しい生き方を選ぶためのセルフカウ… 全50回にわたってお届けしてきたお片付けのヒント。最後に一番お伝えしたいのは、片付けとは単なる家事の延長ではなく、「これからの新しい生き方を選ぶためのセルフカウンセリング」であるということです。 片付けでつまずきやすいポイント 部屋にあるモノ一つひとつは、過去のあなたの「選択」の結果です。それらを整理し、今の自分に必要なモノを選び取り、未来にふさわしくないモノを感謝して手放す。このプロセスを通じて、あなたの心の内側（価値観や本当に大切にしたいこと）が不思議なほどクリアに整っていきます。 今日からできる整え方 空間が変わると、心が変わり、毎日の行動が変わります。「散らかった部屋を見るたびにため息をつく毎日」から、「お気に入りの空間で自分らしく笑顔で過ごす毎日」へ。 あなたが新しい一歩を踏み出し、理想の暮らしを手に入れられることを、心から応援しています。" data-title="片付けのプロセスを通じて、これからの生き方を選び取る" href="50-future-life-organizing.html">
+<div class="blog-img-wrap">
+<img alt="totonou_50" src="images/blog/totonou_50.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-20">2026.05.20</time>
+</div>
+<h2 class="blog-title">片付けのプロセスを通じて、これからの生き方を選び取る</h2>
+<p class="blog-excerpt">全50回にわたってお届けしてきたお片付けのヒント。最後に一番お伝えしたいのは、片付けとは単なる家事の延長ではなく、「これからの新しい生き方を選ぶためのセルフカウ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-19" data-excerpt="せっかく部屋を綺麗に片付けたのに、買い物をしているうちに気づけばまたモノが増えて元通りになってしまう……。このリバウンドの連鎖を断ち切るための最も強力なルールが…" data-search="「ワンイン・ワンアウト」で、部屋の美しさをキープする｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.19 「ワンイン・ワンアウト」で、部屋の美しさをキープする せっかく部屋を綺麗に片付けたのに、買い物をしているうちに気づけばまたモノが増えて元通りになってしまう……。このリバウンドの連鎖を断ち切るための最も強力なルールが… せっかく部屋を綺麗に片付けたのに、買い物をしているうちに気づけばまたモノが増えて元通りになってしまう……。このリバウンドの連鎖を断ち切るための最も強力なルールが「ワンイン・ワンアウト（一入一出）」です。 片付けでつまずきやすいポイント これは非常にシンプルなルールで、「家の中に新しいモノを1つ迎え入れるなら、古いモノを1つ手放す」というものです。服、靴、バッグ、キッチン便利グッズなど、すべてのジャンルで応用できます。 今日からできる整え方 このルールが習慣化すると、買い物をするときに自然と「これを買うなら、今あるあの服を手放せるだろうか？」とワンクッション考えるようになります。その結果、衝動買いやなんとなくの買い物が劇的に減り、お家の中のモノの総量を一定に美しくキープできるようになります。" data-title="「ワンイン・ワンアウト」で、部屋の美しさをキープする" href="49-one-in-one-out.html">
+<div class="blog-img-wrap">
+<img alt="totonou_49" src="images/blog/totonou_49.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-19">2026.05.19</time>
+</div>
+<h2 class="blog-title">「ワンイン・ワンアウト」で、部屋の美しさをキープする</h2>
+<p class="blog-excerpt">せっかく部屋を綺麗に片付けたのに、買い物をしているうちに気づけばまたモノが増えて元通りになってしまう……。このリバウンドの連鎖を断ち切るための最も強力なルールが…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-18" data-excerpt="「私の適正な服の量って、一体何着なんだろう？」そう疑問に思ったことはありませんか？世の中のミニマリストのように、極端に服を減らす必要はありません。あなたにとって…" data-search="私の「適切な服の量」を知るための、簡単なステップ｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.18 私の「適切な服の量」を知るための、簡単なステップ 「私の適正な服の量って、一体何着なんだろう？」そう疑問に思ったことはありませんか？世の中のミニマリストのように、極端に服を減らす必要はありません。あなたにとって… 「私の適正な服の量って、一体何着なんだろう？」そう疑問に思ったことはありませんか？世の中のミニマリストのように、極端に服を減らす必要はありません。あなたにとって心地よい「適正量」を見つけるステップをご紹介します。 自分の適正量がわかる、3つのステップ 整理収納でいう服の適正量とは、一律の決まった着数ではなく、「自分がストレスなく楽に維持できる量」のことです。以下の3つのステップを踏むことで、他人の基準に振り回されない、あなただけのちょうどいいバランスが見えてきます。 【ステップ1】「服の選び方のクセ」を知る： まずは自分が服を買うとき、デザインやときめきを重視する「おしゃれ重視派」なのか、着心地や動きやすさを重視する「実用性重視派」なのかを振り返ります。この好みの傾向によって、元々持っておきたいベースの量は変わります。 【ステップ2】「理想の朝の過ごし方」をイメージする： 毎朝クローゼットを開けたとき、たくさんの服からコーディネートをじっくり選ぶ時間を楽しみたいのか、それとも迷わずサッと1着を選んで1分で支度を終えたいのかを考えます。自分が「楽だな」と感じる朝の時間から、必要な着数の目安が逆算できます。 【ステップ3】今のクローゼットが「機能しているか」確認する： ステップ1と2を踏まえた上で、現在の収納を見渡します。「お気に入りが並んでいるけれど、ギューギューで出し入れにイライラする」「奥に眠って存在を忘れている服がある」という状態であれば、それは今の自分が楽に手入れできる量を超えているサインです。 服をたくさん持って楽しむのも、お気に入りを少数精鋭に絞って楽にするのも、どちらも素敵な正解です。周りの基準ではなく、あなたの毎日の暮らしが一番スムーズにまわるバランスを、一緒に見つけていきましょう。" data-title="私の「適切な服の量」を知るための、簡単なステップ" href="48-wardrobe-appropriate-amount.html">
+<div class="blog-img-wrap">
+<img alt="totonou_48" src="images/blog/totonou_48.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-18">2026.05.18</time>
+</div>
+<h2 class="blog-title">私の「適切な服の量」を知るための、簡単なステップ</h2>
+<p class="blog-excerpt">「私の適正な服の量って、一体何着なんだろう？」そう疑問に思ったことはありませんか？世の中のミニマリストのように、極端に服を減らす必要はありません。あなたにとって…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-17" data-excerpt="いざという時に使う救急箱や薬の引き出し。中に入っている薬を前にして「これは残すべきか、手放すべきか」と迷うことはありませんか？最低限の量で問題ない人もいれば、備…" data-search="薬箱の整理から見直す、家族の安心と健康管理｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.17 薬箱の整理から見直す、家族の安心と健康管理 いざという時に使う救急箱や薬の引き出し。中に入っている薬を前にして「これは残すべきか、手放すべきか」と迷うことはありませんか？最低限の量で問題ない人もいれば、備… いざという時に使う救急箱や薬の引き出し。中に入っている薬を前にして「これは残すべきか、手放すべきか」と迷うことはありませんか？最低限の量で問題ない人もいれば、備えを充実させて安心したい人もいます。薬類の整理は悩みどころですが、大切なのはまず「薬箱がどんな状態なら安心か」という基準を明確にすることです。 薬類は「安心」を基準に整理する お薬は、洋服や他の日用品とは異なり、体調や安全に直結するモノです。緊急事態に備えるモノでもあるため「なくてもよい」の判断が難しく、整理の基準に慎重になるのは当然と言えます。 そこで「安心」が大事な基準になってくるのですが、人によって安心の幅は様々です。薬箱の中身を最低限に抑えるのもよいですし、「たくさん揃っている状態」が安心ならそれも問題ありません。 大切なのは、自分が安心できる基準を持った上で、いざという時に「見やすく、取り出しやすい」状態を作っておくことです。念のため、使用期限もわかる状態で保管しておくとよいでしょう。本当に困ったときに迷わずパッと使えるよう、まずは「わが家の薬箱の基準」を一つ決めてみてください。" data-title="薬箱の整理から見直す、家族の安心と健康管理" href="47-medicine-box.html">
+<div class="blog-img-wrap">
+<img alt="totonou_47" src="images/blog/totonou_47.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-17">2026.05.17</time>
+</div>
+<h2 class="blog-title">薬箱の整理から見直す、家族の安心と健康管理</h2>
+<p class="blog-excerpt">いざという時に使う救急箱や薬の引き出し。中に入っている薬を前にして「これは残すべきか、手放すべきか」と迷うことはありませんか？最低限の量で問題ない人もいれば、備…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-16" data-excerpt="子供のおもちゃ箱が、パーツのバラバラになったおもちゃや、成長して使わなくなったおもちゃで溢れかえっていませんか？モノが多すぎる環境は、子供の集中力や選択する力を…" data-search="おもちゃを「自分で選ぶ」時間が、子供の生きる力を育む｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.16 おもちゃを「自分で選ぶ」時間が、子供の生きる力を育む 子供のおもちゃ箱が、パーツのバラバラになったおもちゃや、成長して使わなくなったおもちゃで溢れかえっていませんか？モノが多すぎる環境は、子供の集中力や選択する力を… 子供のおもちゃ箱が、パーツのバラバラになったおもちゃや、成長して使わなくなったおもちゃで溢れかえっていませんか？モノが多すぎる環境は、子供の集中力や選択する力を奪ってしまいます。 子供が片付けやすい環境とは 子供にとっても、自分で管理できるおもちゃの量には限界があります。定期的に子供と一緒に「今、本当に楽しく遊んでいるおもちゃ」を選ぶ時間を設けてみましょう。 親子で続けやすい収納のコツ 「もう使わないモノは、次のお友達に譲ろうね」「これは大切だからここに飾ろうね」と声をかけながら仕分けることで、子供は「モノを大切にする心」と「自分で選択する力」を自然と身につけていきます。おもちゃを厳選すると、一つの遊びにじっくり集中して取り組むようになります。" data-title="おもちゃを「自分で選ぶ」時間が、子供の生きる力を育む" href="46-kids-select-toys.html">
+<div class="blog-img-wrap">
+<img alt="totonou_46" src="images/blog/totonou_46.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-16">2026.05.16</time>
+</div>
+<h2 class="blog-title">おもちゃを「自分で選ぶ」時間が、子供の生きる力を育む</h2>
+<p class="blog-excerpt">子供のおもちゃ箱が、パーツのバラバラになったおもちゃや、成長して使わなくなったおもちゃで溢れかえっていませんか？モノが多すぎる環境は、子供の集中力や選択する力を…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-15" data-excerpt="メイクポーチや洗面所の奥に、数年前に買ったアイシャドウや、使い切っていない口紅がいくつも眠っていませんか？「まだたくさん残っているし、高かったから……」と、使っ…" data-search="「もったいない」を手放す。今の自分を一番輝かせるコスメの厳選レッスン｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.15 「もったいない」を手放す。今の自分を一番輝かせるコスメの厳選レッスン メイクポーチや洗面所の奥に、数年前に買ったアイシャドウや、使い切っていない口紅がいくつも眠っていませんか？「まだたくさん残っているし、高かったから……」と、使っ… メイクポーチや洗面所の奥に、数年前に買ったアイシャドウや、使い切っていない口紅がいくつも眠っていませんか？「まだたくさん残っているし、高かったから……」と、使っていないのに残しがちなのがコスメの片付けの難しいところです。 期限を意識しつつ、「収納の枠」を決める 肌に直接触れる化粧品は、開封すると酸化が進むため、一般的には半年から2年程度が使用期限の目安と言われています。肌トラブルを防ぐためにも期限を意識することは大切ですが、それ以上に重要なのは「ここに入るだけ」という収納スペースの枠を決めることです。 どれだけお気に入りのコスメであっても、ポーチや引き出しから溢れてゴチャゴチャしていては、毎朝のメイクのたびに小さなストレスを感じてしまいます。まずは自分の管理しやすい適正量を決めることが、美しいメイクスペースを保つ秘訣です。 「もったいない」を手放し、今の自分をときめかせる 適正量に絞り込むとき、最大の敵になるのが「もったいない」という気持ちです。「有名ブランドだったから」「高かったから」「ほとんど使っていないから」という理由で、心のどこかで執着していませんか？ しかし、どんなに高価なコスメでも、今の自分が「飽きて使わなくなったモノ」や「ときめかなくなったモノ」は、その役割を終えています。過去の価値に縛られて引き出しに眠らせておくよりも、今の自分を一番美しく、ワクワクさせてくれる「現役の一軍コスメ」だけを厳選してみましょう。鏡の前を大好きなモノだけで満たすことで、毎朝のメイク時間がもっと特別で楽しいものに変わります。" data-title="「もったいない」を手放す。今の自分を一番輝かせるコスメの厳選レッスン" href="45-cosmetics-expiration.html">
+<div class="blog-img-wrap">
+<img alt="totonou_45" src="images/blog/totonou_45.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-15">2026.05.15</time>
+</div>
+<h2 class="blog-title">「もったいない」を手放す。今の自分を一番輝かせるコスメの厳選レッスン</h2>
+<p class="blog-excerpt">メイクポーチや洗面所の奥に、数年前に買ったアイシャドウや、使い切っていない口紅がいくつも眠っていませんか？「まだたくさん残っているし、高かったから……」と、使っ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-14" data-excerpt="一度は片付けたはずなのに、数日経つとまたバッグや脱いだ服が床にパラパラと置かれ、元通りになってしまう……。このリバウンドを防ぐには、意志の力ではなく「戻しやすい…" data-search="「床置きリバウンド」をなくす、動線の仕組み｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.14 「床置きリバウンド」をなくす、動線の仕組み 一度は片付けたはずなのに、数日経つとまたバッグや脱いだ服が床にパラパラと置かれ、元通りになってしまう……。このリバウンドを防ぐには、意志の力ではなく「戻しやすい… 一度は片付けたはずなのに、数日経つとまたバッグや脱いだ服が床にパラパラと置かれ、元通りになってしまう……。このリバウンドを防ぐには、意志の力ではなく「戻しやすい仕組み」が必要です。 片付けでつまずきやすいポイント 人が床にモノを置いてしまうのは、片付ける場所のハードルが高い（引き出しを開ける、クローゼットの奥にしまう等）からです。疲れて帰ってきたときでも全自動で片付けられるよう、ハードルを徹底的に下げましょう。 バッグは、リビングの入り口近くに置いたカゴに「置くだけ」にする 一度着たけれどまだ洗わない服は、専用の「一時掛けハンガーラック」を用意する 今日からできる整え方 「置くだけ」「掛けるだけ」のワンアクション収納を動線上に配置するだけで、床置きのリバウンドは完全に防ぐことができます。" data-title="「床置きリバウンド」をなくす、動線の仕組み" href="44-floor-hook-system.html">
+<div class="blog-img-wrap">
+<img alt="totonou_44" src="images/blog/totonou_44.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-14">2026.05.14</time>
+</div>
+<h2 class="blog-title">「床置きリバウンド」をなくす、動線の仕組み</h2>
+<p class="blog-excerpt">一度は片付けたはずなのに、数日経つとまたバッグや脱いだ服が床にパラパラと置かれ、元通りになってしまう……。このリバウンドを防ぐには、意志の力ではなく「戻しやすい…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-13" data-excerpt="スマホの中に数万枚溜まった写真、あるいは昔の現像された大量のアルバム。そのまま見返すこともなく、ハードディスクや押し入れの奥に眠らせていませんか？" data-search="大量の写真から「最高の思い出」を厳選して見返す楽しさ｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.13 大量の写真から「最高の思い出」を厳選して見返す楽しさ スマホの中に数万枚溜まった写真、あるいは昔の現像された大量のアルバム。そのまま見返すこともなく、ハードディスクや押し入れの奥に眠らせていませんか？ スマホの中に数万枚溜まった写真、あるいは昔の現像された大量のアルバム。そのまま見返すこともなく、ハードディスクや押し入れの奥に眠らせていませんか？ 片付けでつまずきやすいポイント 写真は、見返して当時の楽しい記憶を蘇らせてこそ意味があるものです。ただ大量に保存してあるだけでは、埋もれてしまって価値を発揮できません。 今日からできる整え方 昔のアルバムであれば、似たようなカットやピンボケのものを整理し、「本当に最高の思い出の数枚」だけをベストアルバムとしてまとめ直してみましょう。スマホの写真も、毎月のお気に入りをフォルダ分けしたり、フォトブックとして1冊に印刷する習慣がおすすめです。量を絞ることで、思い出はいつでも手に取れる宝物に変わります。" data-title="大量の写真から「最高の思い出」を厳選して見返す楽しさ" href="43-photo-album.html">
+<div class="blog-img-wrap">
+<img alt="totonou_43" src="images/blog/totonou_43.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-13">2026.05.13</time>
+</div>
+<h2 class="blog-title">大量の写真から「最高の思い出」を厳選して見返す楽しさ</h2>
+<p class="blog-excerpt">スマホの中に数万枚溜まった写真、あるいは昔の現像された大量のアルバム。そのまま見返すこともなく、ハードディスクや押し入れの奥に眠らせていませんか？</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-12" data-excerpt="「部屋を片付けよう！」と思い立ったとき、まず100円ショップやインテリア店に行って、おしゃれな収納ボックスやカゴを買い揃えていませんか？実は、これが片付けで最も…" data-search="収納ケースを、片付けの「最初」に買ってはいけない理由｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.12 収納ケースを、片付けの「最初」に買ってはいけない理由 「部屋を片付けよう！」と思い立ったとき、まず100円ショップやインテリア店に行って、おしゃれな収納ボックスやカゴを買い揃えていませんか？実は、これが片付けで最も… 「部屋を片付けよう！」と思い立ったとき、まず100円ショップやインテリア店に行って、おしゃれな収納ボックスやカゴを買い揃えていませんか？実は、これが片付けで最もやってはいけない失敗パターンです。 片付けでつまずきやすいポイント モノの整理（減らす作業）をする前に収納グッズを買ってしまうと、不要なモノを綺麗に保管するためだけの「ゴミ箱」を増やしてしまうことになります。また、サイズが合わずにその容器自体が不要品になってしまうことも少なくありません。 正しい順番は必ず、 【整理】モノを全て出して厳選する 【配置】使う場所の近くにレイアウトする 【収納】最後に必要なサイズと数だけ収納グッズを買う 今日からできる整え方 順番を守るだけで、無駄な買い物がなくなり、すっきりとした理想の空間を最短で構築することができます。" data-title="収納ケースを、片付けの「最初」に買ってはいけない理由" href="42-storage-boxes-order.html">
+<div class="blog-img-wrap">
+<img alt="totonou_42" src="images/blog/totonou_42.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-12">2026.05.12</time>
+</div>
+<h2 class="blog-title">収納ケースを、片付けの「最初」に買ってはいけない理由</h2>
+<p class="blog-excerpt">「部屋を片付けよう！」と思い立ったとき、まず100円ショップやインテリア店に行って、おしゃれな収納ボックスやカゴを買い揃えていませんか？実は、これが片付けで最も…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-11" data-excerpt="あなたのお財布、レシートやポイントカード、期限切れのクーポンでパンパンに膨らんでいませんか？お財布は、あなたが自分自身のお金や暮らしをどう扱っているかを映し出す…" data-search="お財布のなかの「小さな片付け」から始めてみる｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.11 お財布のなかの「小さな片付け」から始めてみる あなたのお財布、レシートやポイントカード、期限切れのクーポンでパンパンに膨らんでいませんか？お財布は、あなたが自分自身のお金や暮らしをどう扱っているかを映し出す… あなたのお財布、レシートやポイントカード、期限切れのクーポンでパンパンに膨らんでいませんか？お財布は、あなたが自分自身のお金や暮らしをどう扱っているかを映し出す鏡です。 片付けでつまずきやすいポイント パンパンに膨らんだお財布（通称・ブタ財布）は、中身が見通せないため、「今いくら入っているか」「カードがどこにあるか」が分からず、無駄な出費や買い物のストレスを呼び込みやすくなります。 お財布の整理は、片付けの中で最も簡単で効果が高いスモールステップです。 毎晩、不要なレシートをすべて出す 使っていないポイントカードは断捨離する、またはアプリに移行する 今日からできる整え方 これだけでお財布はすっきりスマートになり、大切なお金を丁寧に扱う意識が自然と芽生えます。" data-title="お財布のなかの「小さな片付け」から始めてみる" href="41-wallet-organizing.html">
+<div class="blog-img-wrap">
+<img alt="totonou_41" src="images/blog/totonou_41.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-11">2026.05.11</time>
+</div>
+<h2 class="blog-title">お財布のなかの「小さな片付け」から始めてみる</h2>
+<p class="blog-excerpt">あなたのお財布、レシートやポイントカード、期限切れのクーポンでパンパンに膨らんでいませんか？お財布は、あなたが自分自身のお金や暮らしをどう扱っているかを映し出す…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-10" data-excerpt="収納スペースを考えるとき、クローゼットや引き出しの中に「100%」ギュウギュウに詰め込んでいませんか？実は、片付けが苦手な人ほど、収納には「2割の余白」を残して…" data-search="片付けを長続きさせる、収納の「2割の余白」｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.10 片付けを長続きさせる、収納の「2割の余白」 収納スペースを考えるとき、クローゼットや引き出しの中に「100%」ギュウギュウに詰め込んでいませんか？実は、片付けが苦手な人ほど、収納には「2割の余白」を残して… 収納スペースを考えるとき、クローゼットや引き出しの中に「100%」ギュウギュウに詰め込んでいませんか？実は、片付けが苦手な人ほど、収納には「2割の余白」を残しておく必要があります。 片付けでつまずきやすいポイント スペースが100%埋まっていると、モノを出し入れするたびに周りのモノが崩れたり、引っかかったりして、片付けるのが面倒になってしまいます。これがリバウンドの最大の原因です。収納の黄金比率は「8割収納（2割の余白）」です。 今日からできる整え方 2割の余白があることで、モノの出し入れがワンアクションでスムーズなり、片付けへの心理的ハードルが劇的に下がります。また、新しくモノが入ってきたときの一時置きスペースとしても機能します。空間のゆとりは、暮らしのゆとりに直結しています。" data-title="片付けを長続きさせる、収納の「2割の余白」" href="40-storage-space.html">
+<div class="blog-img-wrap">
+<img alt="totonou_40" src="images/blog/totonou_40.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-10">2026.05.10</time>
+</div>
+<h2 class="blog-title">片付けを長続きさせる、収納の「2割の余白」</h2>
+<p class="blog-excerpt">収納スペースを考えるとき、クローゼットや引き出しの中に「100%」ギュウギュウに詰め込んでいませんか？実は、片付けが苦手な人ほど、収納には「2割の余白」を残して…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-09" data-excerpt="読み終わった本、いつか読もうと思って買ったままのビジネス書、昔好きだった小説。本棚がぎっしり埋まったまま、何年も中身が変わっていないとしたら、それは知識や価値観…" data-search="本棚の整理から始まる、これからの私のアップデート｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.09 本棚の整理から始まる、これからの私のアップデート 読み終わった本、いつか読もうと思って買ったままのビジネス書、昔好きだった小説。本棚がぎっしり埋まったまま、何年も中身が変わっていないとしたら、それは知識や価値観… 読み終わった本、いつか読もうと思って買ったままのビジネス書、昔好きだった小説。本棚がぎっしり埋まったまま、何年も中身が変わっていないとしたら、それは知識や価値観のアップデートが止まっているサインかもしれません。 片付けでつまずきやすいポイント 本は「情報」の象徴です。本棚を見直すことは、今の自分の興味・関心や、これからの目指したい方向性を確認する作業でもあります。昔の自分にとっては大切だった本も、今の自分にはもう必要がないということがあります。 今日からできる整え方 「今の自分、そしてこれからの未来の自分が何度も読み返したいか？」という基準で本棚を見直してみましょう。 スペースにゆとりができると、新しい知識や素晴らしい本と出会うための「余白」が生まれます。本棚を今のあなたにぴったりな状態にアップデートしていきましょう。" data-title="本棚の整理から始まる、これからの私のアップデート" href="39-bookshelf-update.html">
+<div class="blog-img-wrap">
+<img alt="totonou_39" src="images/blog/totonou_39.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-09">2026.05.09</time>
+</div>
+<h2 class="blog-title">本棚の整理から始まる、これからの私のアップデート</h2>
+<p class="blog-excerpt">読み終わった本、いつか読もうと思って買ったままのビジネス書、昔好きだった小説。本棚がぎっしり埋まったまま、何年も中身が変わっていないとしたら、それは知識や価値観…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-08" data-excerpt="家族で食事をするダイニングテーブル。新聞、チラシ、薬、子供の宿題などが常に置きっぱなしになっていて、食事のたびに端に寄せてスペースを作っていませんか？" data-search="清々しい朝を迎えるための、ダイニングテーブルの夜リセット｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.08 清々しい朝を迎えるための、ダイニングテーブルの夜リセット 家族で食事をするダイニングテーブル。新聞、チラシ、薬、子供の宿題などが常に置きっぱなしになっていて、食事のたびに端に寄せてスペースを作っていませんか？ 家族で食事をするダイニングテーブル。新聞、チラシ、薬、子供の宿題などが常に置きっぱなしになっていて、食事のたびに端に寄せてスペースを作っていませんか？ 片付けでつまずきやすいポイント ダイニングテーブルは、お家全体の「散らかりのバロメーター」です。ここが常にモノで埋まっていると、家全体の片付けのモチベーションが低下してしまいます。 今日からできる整え方 おすすめの習慣は、「夜、寝る前にテーブルの上をリセット（ゼロに）すること」です。 テーブルの上にあるモノを、それぞれの住所に戻す。住所が決まっていないモノは、一時置きのカゴにまとめる。毎晩テーブルの上がリセットされていると、翌朝起きてリビングに来たときの心地よさが格段に違います。清々しい朝を迎えるための小さな習慣を始めてみましょう。" data-title="清々しい朝を迎えるための、ダイニングテーブルの夜リセット" href="38-dining-table-reset.html">
+<div class="blog-img-wrap">
+<img alt="totonou_38" src="images/blog/totonou_38.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-08">2026.05.08</time>
+</div>
+<h2 class="blog-title">清々しい朝を迎えるための、ダイニングテーブルの夜リセット</h2>
+<p class="blog-excerpt">家族で食事をするダイニングテーブル。新聞、チラシ、薬、子供の宿題などが常に置きっぱなしになっていて、食事のたびに端に寄せてスペースを作っていませんか？</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-07" data-excerpt="分厚いファイルにぎっしり詰まった家電の取扱説明書。「いつか故障したときのために」と大切に保管していませんか？実は、何年も見直していないそのファイルの中には、すで…" data-search="取扱説明書の書類ファイルを、手放してみる｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.07 取扱説明書の書類ファイルを、手放してみる 分厚いファイルにぎっしり詰まった家電の取扱説明書。「いつか故障したときのために」と大切に保管していませんか？実は、何年も見直していないそのファイルの中には、すで… 分厚いファイルにぎっしり詰まった家電の取扱説明書。「いつか故障したときのために」と大切に保管していませんか？実は、何年も見直していないそのファイルの中には、すでに手放しても問題のない書類がたくさん紛れ込んでいます。 デジタルと紙、自分に合う管理方法を選ぶ 取扱説明書の管理には大きく分けて2つの方法があります。大切なのは世間の流行りではなく、自分が「探しやすい」「管理していてストレスがない」と感じる方法を選ぶことです。 【アプリやネットで管理する（デジタル派）】 ほぼすべてのメーカーの取扱説明書は、ネット上で型番検索すればPDFで閲覧できます。スマホの無料アプリ（「トリセツ」など）に家電を登録して一元管理すれば、分厚いファイルを処分でき、棚のスペースが大きく空くメリットがあります。 【ファイルにまとめて保管する（紙派）】 「わざわざスマホで検索するのが面倒」「パッと紙をめくって見たい」という方は、紙のまま残す方が圧倒的にスムーズです。プロの現場でも、使いやすく分類された紙のトリセツファイルは根強い人気があります。デジタル化が苦手なら、無理に手放す必要はありません。 どちらの方法でも必須！書類を溜め込まないコツ デジタル・紙のどちらで管理するとしても、まずは「不要な書類」を取り除くことが書類整理の第一歩です。以下の3つの基準でファイルを見直してみましょう。 すでに処分して家にはない家電の説明書・保証書 保証期間が過ぎている、かつ操作が簡単な家電（時計や扇風機など）の説明書 ネットや動画でいつでも使い方を確認できるもの 手元に残すのは「現在使っている家電」で、かつ「自分が必要だと思うもの」だけに厳選します。紙派の方は、残った説明書を「キッチン家電」「リビング家電」などジャンル別にインデックスを引いてポケットファイルに収めるだけで、見違えるほど使いやすくなります。自分に合った心地よい方法で、管理のストレスから解放されましょう。" data-title="取扱説明書の書類ファイルを、手放してみる" href="37-manual-app.html">
+<div class="blog-img-wrap">
+<img alt="totonou_37" src="images/blog/totonou_37.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-07">2026.05.07</time>
+</div>
+<h2 class="blog-title">取扱説明書の書類ファイルを、手放してみる</h2>
+<p class="blog-excerpt">分厚いファイルにぎっしり詰まった家電の取扱説明書。「いつか故障したときのために」と大切に保管していませんか？実は、何年も見直していないそのファイルの中には、すで…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-06" data-excerpt="靴箱がいっぱいで、入り切らない靴が玄関のたたきに出しっぱなしになっている……。これでは玄関を通るたびに気分が下がってしまいますよね。靴箱をすっきりさせるための見…" data-search="靴箱をすっきりさせて、玄関に新しい風を通す｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.06 靴箱をすっきりさせて、玄関に新しい風を通す 靴箱がいっぱいで、入り切らない靴が玄関のたたきに出しっぱなしになっている……。これでは玄関を通るたびに気分が下がってしまいますよね。靴箱をすっきりさせるための見… 靴箱がいっぱいで、入り切らない靴が玄関のたたきに出しっぱなしになっている……。これでは玄関を通るたびに気分が下がってしまいますよね。靴箱をすっきりさせるための見直しの基準をご紹介します。 玄関が散らかりやすい理由 靴を見直すときは、ただ「履けるか・履けないか」で考えてはいけません。合皮がボロボロになっていない限り、物理的には「履ける」からです。基準にすべきは「今、それを履いて自信を持って街を歩きたいか」です。 足が痛くなるけれど高かったから取ってある靴 ライフスタイルが変わって何年も履いていないヒール 好みが変わって服に合わせにくい靴 玄関を整えるコツ これらは今のあなたには必要のない靴です。靴箱の容量に対して、本当に稼働している靴だけを厳選して並べる。これだけで、毎朝の靴選びが楽しくなり、玄関の空気もガラリと変わります。" data-title="靴箱をすっきりさせて、玄関に新しい風を通す" href="36-shoe-cabinet.html">
+<div class="blog-img-wrap">
+<img alt="totonou_36" src="images/blog/totonou_36.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-06">2026.05.06</time>
+</div>
+<h2 class="blog-title">靴箱をすっきりさせて、玄関に新しい風を通す</h2>
+<p class="blog-excerpt">靴箱がいっぱいで、入り切らない靴が玄関のたたきに出しっぱなしになっている……。これでは玄関を通るたびに気分が下がってしまいますよね。靴箱をすっきりさせるための見…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-05" data-excerpt="幼稚園や学校から子供が持ち換えてくるたくさんの絵や工作。「どれも一生懸命作ったものだから捨てられないけれど、置き場所に困る」とお悩みのお母さんは多いものです。" data-search="子供の作品を、成長の記録として愛おしく残すアイデア｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.05 子供の作品を、成長の記録として愛おしく残すアイデア 幼稚園や学校から子供が持ち換えてくるたくさんの絵や工作。「どれも一生懸命作ったものだから捨てられないけれど、置き場所に困る」とお悩みのお母さんは多いものです。 幼稚園や学校から子供が持ち換えてくるたくさんの絵や工作。「どれも一生懸命作ったものだから捨てられないけれど、置き場所に困る」とお悩みのお母さんは多いものです。 大切なのは「モノの量」ではなく「成長の記憶」 子供の作品を全て残そうとすると、家はいくらスペースがあっても足りなくなります。大切なのは、作品という「モノ」をすべて保管することではなく、「子供の成長の記録と、その時の感動」を家庭に合った形で残すことです。 残し方に正解はありません。スマホで綺麗に撮影して「データやフォトブックで残す」のが楽な方もいれば、「子どもの作品は現物で残したい」という方もいます。ご自身が負担に感じない、心地よい方法を選ぶことが一番大切です。 データでも現物でも、親子で無理なく残すコツ どの方法を選ぶとしても、おすすめなのは最初に「作品展」を開くことです。持ち帰った作品は、まずリビングの壁など決まったスペースに一定期間（例えば1週間）飾り、家族みんなで存分に楽しみます。これだけで、作品としての最初の役目は十分に果たせます。 その後の飾り終わった作品のゆくえは、好みに合わせて選びます。 【データで残したい場合】 お気に入りの数点だけを現物で残し、他はスマホの写真に収めてアルバムアプリなどにまとめると、省スペースでいつでも見返せる宝物になります。 【現物だけで保管したい場合】 「この箱に入る分だけ」とあらかじめ思い出ボックスのサイズを決めておきます。子供と一緒にその箱に入る分だけ「一番のお気に入り」を厳選して収め、入り切らない分は「たくさん見せてくれてありがとう」と親子で感謝して手放します。写真に残さなくても、言葉でしっかり褒めて記憶に刻むことで、愛おしい思い出は心に残り続けます。" data-title="子供の作品を、成長の記録として愛おしく残すアイデア" href="35-kids-art.html">
+<div class="blog-img-wrap">
+<img alt="totonou_35" src="images/blog/totonou_35.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-05">2026.05.05</time>
+</div>
+<h2 class="blog-title">子供の作品を、成長の記録として愛おしく残すアイデア</h2>
+<p class="blog-excerpt">幼稚園や学校から子供が持ち換えてくるたくさんの絵や工作。「どれも一生懸命作ったものだから捨てられないけれど、置き場所に困る」とお悩みのお母さんは多いものです。</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-04" data-excerpt="毎朝使う洗面台。古い試供品、最後まで使い切っていないスタイリング剤、いつの間にか増えたヘアピンなどで鏡の裏や棚がゴチャゴチャしていませんか？" data-search="朝のメイクが楽しくなる、洗面台の「一軍」整理術｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.04 朝のメイクが楽しくなる、洗面台の「一軍」整理術 毎朝使う洗面台。古い試供品、最後まで使い切っていないスタイリング剤、いつの間にか増えたヘアピンなどで鏡の裏や棚がゴチャゴチャしていませんか？ 毎朝使う洗面台。古い試供品、最後まで使い切っていないスタイリング剤、いつの間にか増えたヘアピンなどで鏡の裏や棚がゴチャゴチャしていませんか？ 毎日使う場所が散らかる理由 洗面台はスペースが限られている割に、毎日使う一軍のモノから、たまにしか使わない二軍のモノまでが混在しやすい場所です。まずは全てのモノを出し、「今、毎日のように使っているモノ」だけを選び出しましょう。 使いやすく整えるコツ 一軍のスキンケアやメイク道具は、一番取り出しやすい特等席（鏡の裏の手前など）に配置し、それ以外は引き出しの奥や別場所に移動させます。 朝の忙しい時間に、迷わずサッと必要なモノが手に取れる快適さは、1日の始まりをとても心地よいものに変えてくれます。" data-title="朝のメイクが楽しくなる、洗面台の「一軍」整理術" href="34-washroom-first-team.html">
+<div class="blog-img-wrap">
+<img alt="totonou_34" src="images/blog/totonou_34.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-04">2026.05.04</time>
+</div>
+<h2 class="blog-title">朝のメイクが楽しくなる、洗面台の「一軍」整理術</h2>
+<p class="blog-excerpt">毎朝使う洗面台。古い試供品、最後まで使い切っていないスタイリング剤、いつの間にか増えたヘアピンなどで鏡の裏や棚がゴチャゴチャしていませんか？</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-03" data-excerpt="クローゼットがどうもすっきり見えない、服が選びにくいと感じているなら、まずは「ハンガーを統一すること」から始めてみてください。クリーニング店の針金ハンガーや、色…" data-search="ハンガーを統一することから始める、空間の美意識｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.03 ハンガーを統一することから始める、空間の美意識 クローゼットがどうもすっきり見えない、服が選びにくいと感じているなら、まずは「ハンガーを統一すること」から始めてみてください。クリーニング店の針金ハンガーや、色… クローゼットがどうもすっきり見えない、服が選びにくいと感じているなら、まずは「ハンガーを統一すること」から始めてみてください。クリーニング店の針金ハンガーや、色も形もバラバラなハンガーが混ざっていませんか？ 片付けでつまずきやすいポイント ハンガーの種類がバラバラだと、服の肩の高さが揃わないため、視覚的なノイズが増えてクローゼット全体が乱れて見えます。また、無駄なスペースが生まれ、服同士が擦れて傷む原因にもなります。 今日からできる整え方 形や色を揃えた細身のハンガー（滑りにくいタイプなど）に一新するだけで、クローゼットの収納力は1.2倍になり、見た目の美しさは何倍にも跳ね上がります。お気に入りのセレクトショップのような空間を、ハンガー1つで手に入れてみましょう。" data-title="ハンガーを統一することから始める、空間の美意識" href="33-unified-hangers.html">
+<div class="blog-img-wrap">
+<img alt="totonou_33" src="images/blog/totonou_33.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-03">2026.05.03</time>
+</div>
+<h2 class="blog-title">ハンガーを統一することから始める、空間の美意識</h2>
+<p class="blog-excerpt">クローゼットがどうもすっきり見えない、服が選びにくいと感じているなら、まずは「ハンガーを統一すること」から始めてみてください。クリーニング店の針金ハンガーや、色…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-02" data-excerpt="キッチンの奥から、数年前に賞味期限が切れた調味料や缶詰が出てきて、ガッカリしたことはありませんか？食材を無駄にしてしまうのは、あなたの管理不足ではなく、収納の「…" data-search="賞味期限切れを防ぐ、キッチンの「見通し」収納｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.02 賞味期限切れを防ぐ、キッチンの「見通し」収納 キッチンの奥から、数年前に賞味期限が切れた調味料や缶詰が出てきて、ガッカリしたことはありませんか？食材を無駄にしてしまうのは、あなたの管理不足ではなく、収納の「… キッチンの奥から、数年前に賞味期限が切れた調味料や缶詰が出てきて、ガッカリしたことはありませんか？食材を無駄にしてしまうのは、あなたの管理不足ではなく、収納の「見通しの悪さ」が原因です。 毎日使う場所が散らかる理由 キッチン収納の鉄則は、「奥に隠さないこと」と「一目で全体が把握できること」です。深い引き出しや棚の奥にあるモノは、存在自体を脳が忘れてしまいます。 細々とした食材は透明・半透明のケースにまとめる 缶詰や調味料は立てて収納し、上からラベルが見えるようにする 「早く使うモノ」の専用トレイを特等席に作る 使いやすく整えるコツ 買い物の前にパッと一目で在庫が分かれば、二重買いもなくなり、無駄な出費を劇的に減らすことができます。" data-title="賞味期限切れを防ぐ、キッチンの「見通し」収納" href="32-pantry-visibility.html">
+<div class="blog-img-wrap">
+<img alt="totonou_32" src="images/blog/totonou_32.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-02">2026.05.02</time>
+</div>
+<h2 class="blog-title">賞味期限切れを防ぐ、キッチンの「見通し」収納</h2>
+<p class="blog-excerpt">キッチンの奥から、数年前に賞味期限が切れた調味料や缶詰が出てきて、ガッカリしたことはありませんか？食材を無駄にしてしまうのは、あなたの管理不足ではなく、収納の「…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-05-01" data-excerpt="キッチンのカウンターの上、気がつくとDM、鍵、飲みかけのサプリメント、使い終わった輪ゴムなどで埋め尽くされていませんか？平らで使いやすい場所ほど、モノが「とりあ…" data-search="キッチンカウンターの「ちょい置き」を解決する｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.05.01 キッチンカウンターの「ちょい置き」を解決する キッチンのカウンターの上、気がつくとDM、鍵、飲みかけのサプリメント、使い終わった輪ゴムなどで埋め尽くされていませんか？平らで使いやすい場所ほど、モノが「とりあ… キッチンのカウンターの上、気がつくとDM、鍵、飲みかけのサプリメント、使い終わった輪ゴムなどで埋め尽くされていませんか？平らで使いやすい場所ほど、モノが「とりあえず置かれやすい」危険地帯です。 毎日使う場所が散らかる理由 カウンターの上の散らかりを防ぐには、「カウンターの上には原則として何も置かない」という厳格なルールを決めるか、どうしても置いてしまうモノのための「専用の一時置きボックス」を近くに1つだけ用意することです。 使いやすく整えるコツ ボックスの中身は週末に必ずリセットする、と決めておけば、カウンター全体に散らかりが広がるのを防ぐことができます。カウンターがすっきりしているだけで、キッチン全体の清潔感がアップし、料理作りのモチベーションも上がります。" data-title="キッチンカウンターの「ちょい置き」を解決する" href="31-kitchen-counter.html">
+<div class="blog-img-wrap">
+<img alt="totonou_31" src="images/blog/totonou_31.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-05-01">2026.05.01</time>
+</div>
+<h2 class="blog-title">キッチンカウンターの「ちょい置き」を解決する</h2>
+<p class="blog-excerpt">キッチンのカウンターの上、気がつくとDM、鍵、飲みかけのサプリメント、使い終わった輪ゴムなどで埋め尽くされていませんか？平らで使いやすい場所ほど、モノが「とりあ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-30" data-excerpt="スマホから溢れるニュース、仕事のタスク、日々の家事……現代人の脳は、常に大量の情報に晒されて疲れています。それに加えて、家に帰ってもモノが溢れていると、脳は休ま…" data-search="現代人の疲れた脳を癒やす、空間の「引き算」｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.30 現代人の疲れた脳を癒やす、空間の「引き算」 スマホから溢れるニュース、仕事のタスク、日々の家事……現代人の脳は、常に大量の情報に晒されて疲れています。それに加えて、家に帰ってもモノが溢れていると、脳は休ま… スマホから溢れるニュース、仕事のタスク、日々の家事……現代人の脳は、常に大量の情報に晒されて疲れています。それに加えて、家に帰ってもモノが溢れていると、脳は休まる暇がありません。 片付けでつまずきやすいポイント 脳は、視界に入るモノすべてを「情報」として処理しています。散らかった部屋にいるだけで、脳のワーキングメモリ（作業領域）は無意識に消費され、集中力が低下したり、イライラしやすくなったりします。慢性的な疲労感の原因は、部屋にあるのかもしれません。 今日からできる整え方 脳をしっかりと休ませるためには、空間の「情報量」を減らすことが効果的です。使っていないモノを視界から外す、飾りすぎるのをやめて余白を作る。 空間に余白が生まれると、脳の緊張がほぐれ、深いリラックスを得ることができます。家を、心身をリセットするための本当の休息の場所にしていきましょう。" data-title="現代人の疲れた脳を癒やす、空間の「引き算」" href="30-minimal-space.html">
+<div class="blog-img-wrap">
+<img alt="totonou_30" src="images/blog/totonou_30.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-30">2026.04.30</time>
+</div>
+<h2 class="blog-title">現代人の疲れた脳を癒やす、空間の「引き算」</h2>
+<p class="blog-excerpt">スマホから溢れるニュース、仕事のタスク、日々の家事……現代人の脳は、常に大量の情報に晒されて疲れています。それに加えて、家に帰ってもモノが溢れていると、脳は休ま…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-29" data-excerpt="「もし自分に何かあったとき、この大量の荷物を遺された家族が整理することを想像したことがありますか？」少し重いテーマかもしれませんが、これからの時代、非常に大切な…" data-search="これからの豊かな毎日のために、始める「生前整理」｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.29 これからの豊かな毎日のために、始める「生前整理」 「もし自分に何かあったとき、この大量の荷物を遺された家族が整理することを想像したことがありますか？」少し重いテーマかもしれませんが、これからの時代、非常に大切な… 「もし自分に何かあったとき、この大量の荷物を遺された家族が整理することを想像したことがありますか？」少し重いテーマかもしれませんが、これからの時代、非常に大切な価値観です。 片付けでつまずきやすいポイント 遺品整理には、莫大な時間、労力、そして精神的な負担が伴います。何が重要で何が不要か分からないまま、遺族が途方に暮れるケースは少なくありません。だからこそ、元気なうちに自分の意志でモノを整理しておく「生前整理」が注目されています。 今日からできる整え方 生前整理は、決して人生の終わりを準備する後ろ向きな作業ではありません。これからの人生を、本当に必要なモノだけに囲まれて軽やかに、豊かに生きるための前向きなステップです。 家族への最高の思いやりとして、そしてこれからの自分のために、少しずつ持ち物の見直しを始めてみませんか。" data-title="これからの豊かな毎日のために、始める「生前整理」" href="29-life-organize.html">
+<div class="blog-img-wrap">
+<img alt="totonou_29" src="images/blog/totonou_29.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-29">2026.04.29</time>
+</div>
+<h2 class="blog-title">これからの豊かな毎日のために、始める「生前整理」</h2>
+<p class="blog-excerpt">「もし自分に何かあったとき、この大量の荷物を遺された家族が整理することを想像したことがありますか？」少し重いテーマかもしれませんが、これからの時代、非常に大切な…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-28" data-excerpt="「もう何年も散らかったままだから、うちの片付けは諦めています」そうおっしゃる方もいます。しかし、住環境を諦めることは、実は「そこで過ごす自分の未来の可能性」まで…" data-search="空間を変えることで、心の余白と気力を取り戻す｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.28 空間を変えることで、心の余白と気力を取り戻す 「もう何年も散らかったままだから、うちの片付けは諦めています」そうおっしゃる方もいます。しかし、住環境を諦めることは、実は「そこで過ごす自分の未来の可能性」まで… 「もう何年も散らかったままだから、うちの片付けは諦めています」そうおっしゃる方もいます。しかし、住環境を諦めることは、実は「そこで過ごす自分の未来の可能性」まで狭めてしまっているかもしれません。 片付けと心がつながる理由 空間と心理は密接に繋がっています。散らかった部屋にいると、脳は常に視覚的なストレスを受け続け、「新しいことに挑戦しよう」「自分を磨こう」というポジティブな気力が湧きにくくなります。現状維持で精一杯になってしまうのです。 無理なく整えるコツ 空間が変わると、驚くほど思考や行動が変わります。部屋がすっきりすることで、心に余白が生まれ、「ずっとやってみたかった資格の勉強を始めよう」「新しい趣味に挑戦しよう」という一歩を踏み出す勇気が湧いてきます。 片付けは、あなたの未来の可能性を広げるための最高の方法です。" data-title="空間を変えることで、心の余白と気力を取り戻す" href="28-challenge-space.html">
+<div class="blog-img-wrap">
+<img alt="totonou_28" src="images/blog/totonou_28.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-28">2026.04.28</time>
+</div>
+<h2 class="blog-title">空間を変えることで、心の余白と気力を取り戻す</h2>
+<p class="blog-excerpt">「もう何年も散らかったままだから、うちの片付けは諦めています」そうおっしゃる方もいます。しかし、住環境を諦めることは、実は「そこで過ごす自分の未来の可能性」まで…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-27" data-excerpt="「どうして私はいつも部屋を綺麗に保てないんだろう」「自分はダメな人間だ」と、散らかった部屋を見るたびに落ち込んでいませんか？まず知っていただきたいのは、片付けら…" data-search="片付けられない自分を、もう責めなくても大丈夫｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.27 片付けられない自分を、もう責めなくても大丈夫 「どうして私はいつも部屋を綺麗に保てないんだろう」「自分はダメな人間だ」と、散らかった部屋を見るたびに落ち込んでいませんか？まず知っていただきたいのは、片付けら… 「どうして私はいつも部屋を綺麗に保てないんだろう」「自分はダメな人間だ」と、散らかった部屋を見るたびに落ち込んでいませんか？まず知っていただきたいのは、片付けられないのはあなたの性格や能力のせいではないということです。 片付けでつまずきやすいポイント 多くの場合、部屋が散らかるのは、今のあなたのライフステージ（育児、仕事の多忙、心身の疲労など）に対して、モノの量や収納のシステムが合っていないだけです。いわば、サイズの合わない服を無理に着ようとして苦しんでいる状態と同じなのです。 今日からできる整え方 自分を責めるエネルギーを、ほんの少し「仕組みを変えること」に向けてみましょう。完璧を目指す必要はありません。 まずはテーブルの上の1箇所だけ、あるいは引き出しの1段だけを整え、できた自分を認めてあげる。その小さな成功体験の積み重ねが、心と空間を少しずつ整えていきます。" data-title="片付けられない自分を、もう責めなくても大丈夫" href="27-self-compassion.html">
+<div class="blog-img-wrap">
+<img alt="totonou_27" src="images/blog/totonou_27.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-27">2026.04.27</time>
+</div>
+<h2 class="blog-title">片付けられない自分を、もう責めなくても大丈夫</h2>
+<p class="blog-excerpt">「どうして私はいつも部屋を綺麗に保てないんだろう」「自分はダメな人間だ」と、散らかった部屋を見るたびに落ち込んでいませんか？まず知っていただきたいのは、片付けら…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-26" data-excerpt="宅配便が届いたとき、家の中を見られたくなくて、ドアを細く開けてコソコソと荷物を受け取っていませんか？玄関は「家の顔」であり、外の世界とプライベートな空間を繋ぐ大…" data-search="いつでも誰が来ても、自信を持って開けられる玄関に｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.26 いつでも誰が来ても、自信を持って開けられる玄関に 宅配便が届いたとき、家の中を見られたくなくて、ドアを細く開けてコソコソと荷物を受け取っていませんか？玄関は「家の顔」であり、外の世界とプライベートな空間を繋ぐ大… 宅配便が届いたとき、家の中を見られたくなくて、ドアを細く開けてコソコソと荷物を受け取っていませんか？玄関は「家の顔」であり、外の世界とプライベートな空間を繋ぐ大切な場所です。 玄関が散らかりやすい理由 玄関にモノが溢れていると、それだけで外からの良いエネルギーを遮断してしまい、暮らし全体の風通しが悪くなります。脱ぎっぱなしの靴、出しっぱなしの段ボール、何本もある傘……これらはすべて玄関のノイズになります。 まずは、 今シーズン履かない靴はすべて靴箱に収める 傘は人数分だけ残して他は処分するか片付ける 段ボールはその日のうちに処理する 玄関を整えるコツ これらを徹底するだけで、玄関は見違えるほど広く、明るくなります。いつでも誰が来ても、自信を持ってドアを大きく開けられる玄関を目指してみませんか。" data-title="いつでも誰が来ても、自信を持って開けられる玄関に" href="26-clean-entrance.html">
+<div class="blog-img-wrap">
+<img alt="totonou_26" src="images/blog/totonou_26.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-26">2026.04.26</time>
+</div>
+<h2 class="blog-title">いつでも誰が来ても、自信を持って開けられる玄関に</h2>
+<p class="blog-excerpt">宅配便が届いたとき、家の中を見られたくなくて、ドアを細く開けてコソコソと荷物を受け取っていませんか？玄関は「家の顔」であり、外の世界とプライベートな空間を繋ぐ大…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-25" data-excerpt="子供に対して毎日のように「片付けなさい！」と怒ってしまい、後味の悪い思いをしていませんか？子供が片付けられないのは、やる気の問題ではなく、「子供にとって難しすぎ…" data-search="「片付けなさい」と言わなくても、子供が動き出す環境｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.25 「片付けなさい」と言わなくても、子供が動き出す環境 子供に対して毎日のように「片付けなさい！」と怒ってしまい、後味の悪い思いをしていませんか？子供が片付けられないのは、やる気の問題ではなく、「子供にとって難しすぎ… 子供に対して毎日のように「片付けなさい！」と怒ってしまい、後味の悪い思いをしていませんか？子供が片付けられないのは、やる気の問題ではなく、「子供にとって難しすぎる環境」になっているからです。 子供が片付けやすい環境とは 大人が使いやすい収納と、子供が片付けられる収納は全く異なります。子供の目線に立って、以下のポイントをチェックしてみてください。 収納ボックスの位置が高すぎて手が届かない 中身が見えないため、どこに戻していいか分からない 細かく分類されすぎていて、戻すのが面倒 親子で続けやすい収納のコツ 子供のおもちゃ収納は「ポイポイ投げ入れるだけ」の大きめのカゴをいくつか用意し、カゴの前面に「ブロック」「ミニカー」などの写真やイラストを貼っておくのがベストです。 「これなら自分でもできる！」という環境を整えてあげることで、子供は自主的に片付けを始め、お母さんのイライラも解消されます。" data-title="「片付けなさい」と言わなくても、子供が動き出す環境" href="25-kids-room-storage.html">
+<div class="blog-img-wrap">
+<img alt="totonou_25" src="images/blog/totonou_25.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-25">2026.04.25</time>
+</div>
+<h2 class="blog-title">「片付けなさい」と言わなくても、子供が動き出す環境</h2>
+<p class="blog-excerpt">子供に対して毎日のように「片付けなさい！」と怒ってしまい、後味の悪い思いをしていませんか？子供が片付けられないのは、やる気の問題ではなく、「子供にとって難しすぎ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-24" data-excerpt="出かける直前に「車の鍵がない！」「大事な書類が見つからない！」と焦って家中を探し回り、動悸がした経験はありませんか？探し物をする時間は、精神的にも時間的にも大き…" data-search="「あれどこ？」の焦りをなくす、お家の仕組み作り｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.24 「あれどこ？」の焦りをなくす、お家の仕組み作り 出かける直前に「車の鍵がない！」「大事な書類が見つからない！」と焦って家中を探し回り、動悸がした経験はありませんか？探し物をする時間は、精神的にも時間的にも大き… 出かける直前に「車の鍵がない！」「大事な書類が見つからない！」と焦って家中を探し回り、動悸がした経験はありませんか？探し物をする時間は、精神的にも時間的にも大きなロスです。 片付けでつまずきやすいポイント 探し物が発生するのは、モノの定位置が曖昧であることと、収納の「見える化」ができていないことが原因です。 鍵や財布、印鑑などの重要度の高いモノほど、帰宅してからの動きの中に全自動で組み込める定位置（住所）を作りましょう。 玄関のドアにマグネットフックをつけて鍵を掛ける リビングの定位置のカゴに財布を入れる 今日からできる整え方 「ここに必ずある」という安心感は、日々のストレスを劇的に減らしてくれます。探し物のない、穏やかな毎日を仕組み作りで手に入れましょう。" data-title="「あれどこ？」の焦りをなくす、お家の仕組み作り" href="24-key-hook-system.html">
+<div class="blog-img-wrap">
+<img alt="totonou_24" src="images/blog/totonou_24.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-24">2026.04.24</time>
+</div>
+<h2 class="blog-title">「あれどこ？」の焦りをなくす、お家の仕組み作り</h2>
+<p class="blog-excerpt">出かける直前に「車の鍵がない！」「大事な書類が見つからない！」と焦って家中を探し回り、動悸がした経験はありませんか？探し物をする時間は、精神的にも時間的にも大き…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-23" data-excerpt="「クローゼットの中や引き出しの奥は、誰にも見られないから散らかっていてもいいや」と思っていませんか？実は、隠れた場所の乱れこそが、日々の心のエネルギーをじわじわ…" data-search="見えない場所の乱れが、心のエネルギーを奪う理由｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.23 見えない場所の乱れが、心のエネルギーを奪う理由 「クローゼットの中や引き出しの奥は、誰にも見られないから散らかっていてもいいや」と思っていませんか？実は、隠れた場所の乱れこそが、日々の心のエネルギーをじわじわ… 「クローゼットの中や引き出しの奥は、誰にも見られないから散らかっていてもいいや」と思っていませんか？実は、隠れた場所の乱れこそが、日々の心のエネルギーをじわじわと奪っています。 片付けと心がつながる理由 誰も見ない場所を開けるたびに、脳は無意識のうちに「ここも片付いていない」という小さな不快感（ノイズ）を受け取っています。この積み重ねが、日常のなんとなくすっきりしない気分の原因になるのです。 無理なく整えるコツ 逆に、クローゼットを開けた瞬間、あるいは引き出しを引いた瞬間に、中身が美しく整っていると、脳は深い安心感とコントロール感（自分で暮らしを整えられているという自信）を得ることができます。 見えない場所を整えることは、他人のためではなく、自分自身の心を整えるために最も効果的な方法です。" data-title="見えない場所の乱れが、心のエネルギーを奪う理由" href="23-organized-drawer.html">
+<div class="blog-img-wrap">
+<img alt="totonou_23" src="images/blog/totonou_23.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-23">2026.04.23</time>
+</div>
+<h2 class="blog-title">見えない場所の乱れが、心のエネルギーを奪う理由</h2>
+<p class="blog-excerpt">「クローゼットの中や引き出しの奥は、誰にも見られないから散らかっていてもいいや」と思っていませんか？実は、隠れた場所の乱れこそが、日々の心のエネルギーをじわじわ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-22" data-excerpt="「これ、すごく高かったから」「ブランドものだから、着ていないけれど手放せない」 そんな理由で、クローゼットの肥やしになっているモノはありませんか？" data-search="高価だったモノへの執着を、そっと手放す｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.22 高価だったモノへの執着を、そっと手放す 「これ、すごく高かったから」「ブランドものだから、着ていないけれど手放せない」 そんな理由で、クローゼットの肥やしになっているモノはありませんか？ 「これ、すごく高かったから」「ブランドものだから、着ていないけれど手放せない」 そんな理由で、クローゼットの肥やしになっているモノはありませんか？ 片付けでつまずきやすいポイント 心理学には「埋没費用（サンクコスト）効果」という言葉があります。過去に支払った高いお金（コスト）に執着するあまり、「手放すのはもったいない、損をしたくない」と判断を誤ってしまう現象です。しかし、どれほど高価なモノであっても、今使われていないのであれば、そのモノはお金の価値をすでに失っています。 今日からできる整え方 モノの価値は、「購入した金額」ではなく、「今のあなたがどれだけ活用しているか」で決まります。使わずに置いておくことは、そのモノの価値をゼロにしているのと同じです。 過去の支出に縛られるのをやめ、今の自分が本当にときめくモノに囲まれる選択をしてみましょう。" data-title="高価だったモノへの執着を、そっと手放す" href="22-expensive-items.html">
+<div class="blog-img-wrap">
+<img alt="totonou_22" src="images/blog/totonou_22.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-22">2026.04.22</time>
+</div>
+<h2 class="blog-title">高価だったモノへの執着を、そっと手放す</h2>
+<p class="blog-excerpt">「これ、すごく高かったから」「ブランドものだから、着ていないけれど手放せない」 そんな理由で、クローゼットの肥やしになっているモノはありませんか？</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-21" data-excerpt="昔もらった手紙、子供が幼い頃に描いた絵、旅先で買ったお土産。「思い出が詰まっていて、どうしても捨てられない」と悩むことは、ごく自然なことです。" data-search="思い出の品を整理するときの、心の整え方｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.21 思い出の品を整理するときの、心の整え方 昔もらった手紙、子供が幼い頃に描いた絵、旅先で買ったお土産。「思い出が詰まっていて、どうしても捨てられない」と悩むことは、ごく自然なことです。 昔もらった手紙、子供が幼い頃に描いた絵、旅先で買ったお土産。「思い出が詰まっていて、どうしても捨てられない」と悩むことは、ごく自然なことです。 片付けと心がつながる理由 モノを手放せないとき、私たちの心は「そのモノを捨てると、当時の楽しかった記憶や大切な人との繋がりまで消えてしまうのではないか」という不安を感じています。しかし、大切な思い出はあなたの心の中にしっかりと刻まれており、モノをなくしても消えることはありません。 無理なく整えるコツ 思い出の品と上手に向き合うコツは、すべてを無理に捨てるのではなく、「ベスト版」を選ぶことです。例えば、子供の絵ならお気に入りの数枚だけを額に入れて飾り、残りは写真に撮ってデータとして残す。 モノを箱に閉じ込めておくよりも、厳選して日常の中で目にする方が、思い出はより生き生きと輝きます。" data-title="思い出の品を整理するときの、心の整え方" href="21-memory-organizing.html">
+<div class="blog-img-wrap">
+<img alt="totonou_21" src="images/blog/totonou_21.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-21">2026.04.21</time>
+</div>
+<h2 class="blog-title">思い出の品を整理するときの、心の整え方</h2>
+<p class="blog-excerpt">昔もらった手紙、子供が幼い頃に描いた絵、旅先で買ったお土産。「思い出が詰まっていて、どうしても捨てられない」と悩むことは、ごく自然なことです。</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-20" data-excerpt="「何度言ったら片付けるの！」と、旦那さんやお子さんに対して毎日イライラと怒鳴っていませんか？協力してくれない家族に対して不満が募ると、せっかくの我が家の雰囲気も…" data-search="家族が片付けてくれないと嘆く前に、戻しやすさを引き算する｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.20 家族が片付けてくれないと嘆く前に、戻しやすさを引き算する 「何度言ったら片付けるの！」と、旦那さんやお子さんに対して毎日イライラと怒鳴っていませんか？協力してくれない家族に対して不満が募ると、せっかくの我が家の雰囲気も… 「何度言ったら片付けるの！」と、旦那さんやお子さんに対して毎日イライラと怒鳴っていませんか？協力してくれない家族に対して不満が募ると、せっかくの我が家の雰囲気も悪くなってしまいますよね。 片付けでつまずきやすいポイント 家族がモノを元に戻してくれないとき、責めるべきは家族の意識ではなく、収納の「難易度の高さ」です。 片付けの手順が細かすぎたり、収納場所が遠すぎたりすると、家族はついていけません。ハサミは引き出しに隠さず、ペン立てに挿すだけにする。子供のおもちゃは細かく分類せず、「ブロックはここ」と大きめのカゴに放り込むだけにする。 今日からできる整え方 家族に片付けを求める前に、徹底的に「戻しやすさの引き算」をしてみてください。ハードルを限界まで下げることで、家族は自然と自分で動いてくれるようになり、あなたのイライラも解消されます。" data-title="家族が片付けてくれないと嘆く前に、戻しやすさを引き算する" href="20-family-easy-storage.html">
+<div class="blog-img-wrap">
+<img alt="totonou_20" src="images/blog/totonou_20.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-20">2026.04.20</time>
+</div>
+<h2 class="blog-title">家族が片付けてくれないと嘆く前に、戻しやすさを引き算する</h2>
+<p class="blog-excerpt">「何度言ったら片付けるの！」と、旦那さんやお子さんに対して毎日イライラと怒鳴っていませんか？協力してくれない家族に対して不満が募ると、せっかくの我が家の雰囲気も…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-19" data-excerpt="家に帰ってきたとき、鍵やスマホ、郵便物を「とりあえず」テーブルや棚の上に置いてしまい、そのまま数日間放置されている……。そんな景色に心当たりはありませんか？この…" data-search="「とりあえずここに置こう」をなくす、モノの正しい住所登録｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.19 「とりあえずここに置こう」をなくす、モノの正しい住所登録 家に帰ってきたとき、鍵やスマホ、郵便物を「とりあえず」テーブルや棚の上に置いてしまい、そのまま数日間放置されている……。そんな景色に心当たりはありませんか？この… 家に帰ってきたとき、鍵やスマホ、郵便物を「とりあえず」テーブルや棚の上に置いてしまい、そのまま数日間放置されている……。そんな景色に心当たりはありませんか？この「とりあえず置き」こそが、散らかった部屋が作られる第一歩です。 片付けでつまずきやすいポイント モノが散らかるのは、そのモノに明確な「住所（定位置）」が決まっていないからです。人間と同じように、モノにも帰るべきお家が必要です。 住所を決めるときのポイントは、使う場所のすぐ近くに住所を作ること、一緒に使うモノは同じ場所にまとめること、家族みんなが分かるようにラベリングすることです。 今日からできる整え方 すべてのモノに正しい住所を登録してあげることで、「とりあえず置き」は自然と消え去り、片付けに迷うことがなくなります。" data-title="「とりあえずここに置こう」をなくす、モノの正しい住所登録" href="19-item-address.html">
+<div class="blog-img-wrap">
+<img alt="totonou_19" src="images/blog/totonou_19.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-19">2026.04.19</time>
+</div>
+<h2 class="blog-title">「とりあえずここに置こう」をなくす、モノの正しい住所登録</h2>
+<p class="blog-excerpt">家に帰ってきたとき、鍵やスマホ、郵便物を「とりあえず」テーブルや棚の上に置いてしまい、そのまま数日間放置されている……。そんな景色に心当たりはありませんか？この…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-18" data-excerpt="旅行先のホテルでもらったアメニティ、化粧品の無料サンプル、街頭で配られていた試供品や粗品。「無料だから」「いつか旅行のときに使うから」と、洗面所の引き出しに溜め…" data-search="無料のサンプルや粗品を、家の中に溜め込まないための基準｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.18 無料のサンプルや粗品を、家の中に溜め込まないための基準 旅行先のホテルでもらったアメニティ、化粧品の無料サンプル、街頭で配られていた試供品や粗品。「無料だから」「いつか旅行のときに使うから」と、洗面所の引き出しに溜め… 旅行先のホテルでもらったアメニティ、化粧品の無料サンプル、街頭で配られていた試供品や粗品。「無料だから」「いつか旅行のときに使うから」と、洗面所の引き出しに溜め込んでいませんか？ 片付けでつまずきやすいポイント タダでもらえるモノは、手に入れるときの心理的ハードルが低いため、意識していないとどんどん家の中に溜まり、貴重なスペースを侵食していきます。 無料のモノを手放す、あるいは溜め込まないためのシンプルな判断基準は、「もしそれが有料（お店で売っている商品）だとしても、自分でお金を出して買いたいか？」という質問です。 今日からできる整え方 もし答えがノーであれば、それは今のあなたにとって不要なモノです。家の中にノイズを入れないために、もらう前にそっと断る、あるいは貰ったらすぐに使い切る習慣をつけましょう。" data-title="無料のサンプルや粗品を、家の中に溜め込まないための基準" href="18-free-samples.html">
+<div class="blog-img-wrap">
+<img alt="totonou_18" src="images/blog/totonou_18.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-18">2026.04.18</time>
+</div>
+<h2 class="blog-title">無料のサンプルや粗品を、家の中に溜め込まないための基準</h2>
+<p class="blog-excerpt">旅行先のホテルでもらったアメニティ、化粧品の無料サンプル、街頭で配られていた試供品や粗品。「無料だから」「いつか旅行のときに使うから」と、洗面所の引き出しに溜め…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-17" data-excerpt="学校のお手紙、役所からの通知、ダイレクトメール（DM）。ダイニングテーブルやカウンターの上に、いつの間にか「書類の山」ができていませんか？紙の書類は、油断すると…" data-search="ダイニングに溜まっていく紙の書類を、その日のうちに流す仕組み｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.17 ダイニングに溜まっていく紙の書類を、その日のうちに流す仕組み 学校のお手紙、役所からの通知、ダイレクトメール（DM）。ダイニングテーブルやカウンターの上に、いつの間にか「書類の山」ができていませんか？紙の書類は、油断すると… 学校のお手紙、役所からの通知、ダイレクトメール（DM）。ダイニングテーブルやカウンターの上に、いつの間にか「書類の山」ができていませんか？紙の書類は、油断するとあっという間に家の中に増殖していきます。 紙の書類が溜まる理由 書類を溜めないための唯一の方法は、「家の中に入ってきた瞬間に、その場で仕分けるシンプルな仕組み」を作ることです。 郵便物や書類を手にしたら、ダイニングテーブルに置く前に、その場で「すぐ捨てるモノ」「確認して処理するモノ」「保管するモノ」の3つに分類します。 書類整理を続けるコツ 不要なDMやチラシはその場でゴミ箱へ。期限付きの振り込み用紙などは専用の一時置きへ。契約書など保管するモノはファイルへ。紙のまま家の中に「とりあえず置く」のをやめるだけで、ダイニングの景色は見違えるほどすっきり整います。" data-title="ダイニングに溜まっていく紙の書類を、その日のうちに流す仕組み" href="17-paper-flow.html">
+<div class="blog-img-wrap">
+<img alt="totonou_17" src="images/blog/totonou_17.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-17">2026.04.17</time>
+</div>
+<h2 class="blog-title">ダイニングに溜まっていく紙の書類を、その日のうちに流す仕組み</h2>
+<p class="blog-excerpt">学校のお手紙、役所からの通知、ダイレクトメール（DM）。ダイニングテーブルやカウンターの上に、いつの間にか「書類の山」ができていませんか？紙の書類は、油断すると…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-16" data-excerpt="ハサミや爪切り、耳かきなど、使ったあとに元の場所に戻せず、いつもテーブルの上に置きっぱなしになって迷子になる……。「私は本当に片付けが苦手でズボラだな」とため息…" data-search="使ったモノを戻せないのは、あなたのズボラさのせいではない｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.16 使ったモノを戻せないのは、あなたのズボラさのせいではない ハサミや爪切り、耳かきなど、使ったあとに元の場所に戻せず、いつもテーブルの上に置きっぱなしになって迷子になる……。「私は本当に片付けが苦手でズボラだな」とため息… ハサミや爪切り、耳かきなど、使ったあとに元の場所に戻せず、いつもテーブルの上に置きっぱなしになって迷子になる……。「私は本当に片付けが苦手でズボラだな」とため息をついていませんか？ 片付けでつまずきやすいポイント 断言しますが、使ったモノを戻せないのはあなたの性格のせいではなく、収納の「仕組み」が間違っているからです。 人間は、モノを戻すために「扉を開けて、引き出しを引いて、ケースの蓋を開ける」といった3歩以上の複雑な動き（マルチアクション）を求められると、面倒になって途中で放置してしまいます。 今日からできる整え方 戻せないモノは、使う場所のすぐ近くに、蓋のないカゴへ「ポイと入れるだけ」のワンアクション収納にしてみてください。仕組みを変えれば、誰でも全自動で元に戻せるようになります。" data-title="使ったモノを戻せないのは、あなたのズボラさのせいではない" href="16-one-action-storage.html">
+<div class="blog-img-wrap">
+<img alt="totonou_16" src="images/blog/totonou_16.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-16">2026.04.16</time>
+</div>
+<h2 class="blog-title">使ったモノを戻せないのは、あなたのズボラさのせいではない</h2>
+<p class="blog-excerpt">ハサミや爪切り、耳かきなど、使ったあとに元の場所に戻せず、いつもテーブルの上に置きっぱなしになって迷子になる……。「私は本当に片付けが苦手でズボラだな」とため息…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-15" data-excerpt="「まだ綺麗だし、捨てるのはもったいない」この言葉は、モノを大切にする素晴らしい美徳です。しかし、その「もったいない」という気持ちのせいで、使わないモノが引き出し…" data-search="しまい込むのではなく、活かす。「もったいない」の本当の意味｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.15 しまい込むのではなく、活かす。「もったいない」の本当の意味 「まだ綺麗だし、捨てるのはもったいない」この言葉は、モノを大切にする素晴らしい美徳です。しかし、その「もったいない」という気持ちのせいで、使わないモノが引き出し… 「まだ綺麗だし、捨てるのはもったいない」この言葉は、モノを大切にする素晴らしい美徳です。しかし、その「もったいない」という気持ちのせいで、使わないモノが引き出しの奥で何年も眠り続けているとしたら、それは本当にモノを大切にしていると言えるでしょうか。 片付けでつまずきやすいポイント モノの本当の使命は、人間に「使われること」です。 使わずに箱の中に閉じ込めておくことこそが、実はモノにとって一番「もったいない」状態です。 今日からできる整え方 自分で使わないのであれば、必要としている人に譲る、リサイクルショップに出すなどして、モノを再び社会の循環に戻してあげる。手放すことは、モノに新しい命を吹き込む前向きな行動です。価値観を少し変えてみませんか。" data-title="しまい込むのではなく、活かす。「もったいない」の本当の意味" href="15-mottainai-gift.html">
+<div class="blog-img-wrap">
+<img alt="totonou_15" src="images/blog/totonou_15.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-15">2026.04.15</time>
+</div>
+<h2 class="blog-title">しまい込むのではなく、活かす。「もったいない」の本当の意味</h2>
+<p class="blog-excerpt">「まだ綺麗だし、捨てるのはもったいない」この言葉は、モノを大切にする素晴らしい美徳です。しかし、その「もったいない」という気持ちのせいで、使わないモノが引き出し…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-14" data-excerpt="「今日こそ家を全部片付けるぞ！」と意気込んで始めたものの、数時間で疲れてしまい、結局余計に散らかった状態で挫折した経験はありませんか？「自分はなんてズボラで根気…" data-search="片付けのモチベーションが続かないのは、脳の「決断疲れ」のせい｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.14 片付けのモチベーションが続かないのは、脳の「決断疲れ」のせい 「今日こそ家を全部片付けるぞ！」と意気込んで始めたものの、数時間で疲れてしまい、結局余計に散らかった状態で挫折した経験はありませんか？「自分はなんてズボラで根気… 「今日こそ家を全部片付けるぞ！」と意気込んで始めたものの、数時間で疲れてしまい、結局余計に散らかった状態で挫折した経験はありませんか？「自分はなんてズボラで根気がないんだろう」と責める必要はありません。 片付けでつまずきやすいポイント 片付けが続かないのは、体力の問題ではなく、脳の「決断疲れ」が原因です。 モノを一つひとつ手にとって「残すか、捨てるか」を判断することは、脳にとって非常に大きなエネルギーを消費する作業です。短時間で大量の決断を迫られると、脳はあっという間に疲弊してしまいます。 今日からできる整え方 片付けを長続きさせるコツは、一気にやろうとせず、今日は「財布の中だけ」「引き出し1段だけ」と場所を区切り、15分程度で終わる小さなステップ（スモールステップ）を重ねることです。" data-title="片付けのモチベーションが続かないのは、脳の「決断疲れ」のせい" href="14-decision-fatigue.html">
+<div class="blog-img-wrap">
+<img alt="totonou_14" src="images/blog/totonou_14.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-14">2026.04.14</time>
+</div>
+<h2 class="blog-title">片付けのモチベーションが続かないのは、脳の「決断疲れ」のせい</h2>
+<p class="blog-excerpt">「今日こそ家を全部片付けるぞ！」と意気込んで始めたものの、数時間で疲れてしまい、結局余計に散らかった状態で挫折した経験はありませんか？「自分はなんてズボラで根気…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-13" data-excerpt="クローゼットの中はハンガーがギッシリで服が溢れているのに、毎朝「着たい服がない」と悩んでいる……。これは非常に多くの女性が抱える矛盾です。" data-search="たくさんあるのに着る服がない、クローゼットの衣替え｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.13 たくさんあるのに着る服がない、クローゼットの衣替え クローゼットの中はハンガーがギッシリで服が溢れているのに、毎朝「着たい服がない」と悩んでいる……。これは非常に多くの女性が抱える矛盾です。 クローゼットの中はハンガーがギッシリで服が溢れているのに、毎朝「着たい服がない」と悩んでいる……。これは非常に多くの女性が抱える矛盾です。 服選びがしづらくなる理由 服はあるのに着る服がないと感じるのは、クローゼットの中に「今の自分」にフィットしていない服が紛れ込んでいるからです。 高かったから、数回しか着ていないけれど捨てられない服。好みが変わって、今の気分には合わない服。体型が変わって、着ると少し窮屈に感じる服。 これらはすべて「過去の服」です。これらが1軍の服と混ざっているため、クローゼットの視界が曇り、服が選べなくなってしまいます。 クローゼット整理のコツ 衣替えのタイミングで、今の自分を一番輝かせてくれる服だけを厳選し、無意識の「買い癖」を見直してみましょう。" data-title="たくさんあるのに着る服がない、クローゼットの衣替え" href="13-closet-seasonal-change.html">
+<div class="blog-img-wrap">
+<img alt="totonou_13" src="images/blog/totonou_13.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-13">2026.04.13</time>
+</div>
+<h2 class="blog-title">たくさんあるのに着る服がない、クローゼットの衣替え</h2>
+<p class="blog-excerpt">クローゼットの中はハンガーがギッシリで服が溢れているのに、毎朝「着たい服がない」と悩んでいる……。これは非常に多くの女性が抱える矛盾です。</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-12" data-excerpt="片付けの途中で、「今は使っていないけれど、いつか使うかもしれない」と思って手が止まってしまうモノはありませんか？この「いつか」という言葉は、手放す罪悪感から逃れ…" data-search="「いつか使うかもしれない」という迷いに、そっと期限をつける｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.12 「いつか使うかもしれない」という迷いに、そっと期限をつける 片付けの途中で、「今は使っていないけれど、いつか使うかもしれない」と思って手が止まってしまうモノはありませんか？この「いつか」という言葉は、手放す罪悪感から逃れ… 片付けの途中で、「今は使っていないけれど、いつか使うかもしれない」と思って手が止まってしまうモノはありませんか？この「いつか」という言葉は、手放す罪悪感から逃れるための魔法の言い訳です。しかし、その「いつか」が来ることはほとんどありません。 片付けと心がつながる理由 どうしても迷って捨てられないモノがあるときは、無理に捨てる必要はありません。おすすめなのは「期限付きの保留箱」を作ることです。 迷ったモノをその箱に入れ、外側に「半年後の日付」を大きく書いて押し入れなどにしまっておきます。 無理なく整えるコツ もしその半年間のあいだ、一度も箱を開けず、中身の存在すら忘れていたとしたら、それは「今のあなたの暮らしには必要のないモノ」という明確な事実です。期限が来たとき、驚くほどすんなりと感謝して手放すことができます。" data-title="「いつか使うかもしれない」という迷いに、そっと期限をつける" href="12-deadline-box.html">
+<div class="blog-img-wrap">
+<img alt="totonou_12" src="images/blog/totonou_12.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-12">2026.04.12</time>
+</div>
+<h2 class="blog-title">「いつか使うかもしれない」という迷いに、そっと期限をつける</h2>
+<p class="blog-excerpt">片付けの途中で、「今は使っていないけれど、いつか使うかもしれない」と思って手が止まってしまうモノはありませんか？この「いつか」という言葉は、手放す罪悪感から逃れ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="整理収納コラム" data-date="2026-04-11" data-excerpt="「特売だったから」「いつかなくなるから」と、洗剤やティッシュ、食材のストックを大量に買い込んで、収納スペースを圧迫していませんか？" data-search="ストックの安心感と、暮らしの余白のバランスについて｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 整理収納コラム 2026.04.11 ストックの安心感と、暮らしの余白のバランスについて 「特売だったから」「いつかなくなるから」と、洗剤やティッシュ、食材のストックを大量に買い込んで、収納スペースを圧迫していませんか？ 「特売だったから」「いつかなくなるから」と、洗剤やティッシュ、食材のストックを大量に買い込んで、収納スペースを圧迫していませんか？ 片付けと心がつながる理由 安く買えたことで一時は得をしたような豊かな気持ちになりますが、実はそのストックが部屋を狭くし、あなた自身の暮らしの快適さを奪っているかもしれません。 モノを置いておくスペースにも、毎月高い家賃や住宅ローンが発生しています。つまり、大量のストックを保管することは、部屋という貴重な空間をモノに貸し出しているのと同じなのです。 無理なく整えるコツ 「お店は我が家の倉庫」と考えを変えてみましょう。必要以上のストックを手放し、空間の「余白」を確保する方が、はるかに贅沢で心地よい暮らしが手に入ります。" data-title="ストックの安心感と、暮らしの余白のバランスについて" href="11-stock-balance.html">
+<div class="blog-img-wrap">
+<img alt="totonou_11" src="images/blog/totonou_11.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-11">2026.04.11</time>
+</div>
+<h2 class="blog-title">ストックの安心感と、暮らしの余白のバランスについて</h2>
+<p class="blog-excerpt">「特売だったから」「いつかなくなるから」と、洗剤やティッシュ、食材のストックを大量に買い込んで、収納スペースを圧迫していませんか？</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-10" data-excerpt="世の中にはたくさんの収納術や片付けのテクニックが溢れています。しかし、ただモノを綺麗にカゴに並べたり、美しく隠したりするだけでは、本当の意味で暮らしが整ったとは…" data-search="モノを右から左へ並べるだけではない、心の整理収納｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.10 モノを右から左へ並べるだけではない、心の整理収納 世の中にはたくさんの収納術や片付けのテクニックが溢れています。しかし、ただモノを綺麗にカゴに並べたり、美しく隠したりするだけでは、本当の意味で暮らしが整ったとは… 世の中にはたくさんの収納術や片付けのテクニックが溢れています。しかし、ただモノを綺麗にカゴに並べたり、美しく隠したりするだけでは、本当の意味で暮らしが整ったとは言えません。なぜなら、原因である「心や行動の癖」が変わっていないからです。 片付けと心がつながる理由 totonouが大切にしているのは、単なる表面的な片付けではなく、あなた自身の心と向き合う「心理的整理収納」です。 なぜそのモノが溜まってしまうのか、手放すことにどんな不安があるのか。お客様の心に優しく寄り添い、内面を整えていくことで、リバウンドしない本当の整理収納が実現します。 無理なく整えるコツ 私たちが整えるのは、空間の先にある、あなたのこれからの「生き方」そのものです。" data-title="モノを右から左へ並べるだけではない、心の整理収納" href="10-psychological-organizing.html">
+<div class="blog-img-wrap">
+<img alt="totonou_10" src="images/blog/totonou_10.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-10">2026.04.10</time>
+</div>
+<h2 class="blog-title">モノを右から左へ並べるだけではない、心の整理収納</h2>
+<p class="blog-excerpt">世の中にはたくさんの収納術や片付けのテクニックが溢れています。しかし、ただモノを綺麗にカゴに並べたり、美しく隠したりするだけでは、本当の意味で暮らしが整ったとは…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-09" data-excerpt="仕事や育児で疲れ果てて帰宅し、「ただいま」と玄関を開けた瞬間。目の前にモノが溢れた景色が広がっていると、体と心がドッと重くなるような気がしませんか？家がストレス…" data-search="ただいま、と玄関を開けたとき、体と心がホッとする家｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.09 ただいま、と玄関を開けたとき、体と心がホッとする家 仕事や育児で疲れ果てて帰宅し、「ただいま」と玄関を開けた瞬間。目の前にモノが溢れた景色が広がっていると、体と心がドッと重くなるような気がしませんか？家がストレス… 仕事や育児で疲れ果てて帰宅し、「ただいま」と玄関を開けた瞬間。目の前にモノが溢れた景色が広がっていると、体と心がドッと重くなるような気がしませんか？家がストレスの場所になってしまっているサインです。 玄関が散らかりやすい理由 本来、我が家は外の世界の緊張から自分を解放し、心身を癒やすための「安全基地」であるべきです。 家を安全基地にするために、まずは視界に入るノイズを減らすことから始めましょう。散らかったモノを隠すのではなく、今の自分を心地よくしてくれるモノだけを残す。 玄関を整えるコツ 玄関を開けた瞬間に、張り詰めていた心がフッと緩み、深い安心感に包まれる。そんな本当の休息ができる住環境を、一緒に作っていきましょう。" data-title="ただいま、と玄関を開けたとき、体と心がホッとする家" href="09-home-safe-base.html">
+<div class="blog-img-wrap">
+<img alt="totonou_9" src="images/blog/totonou_9.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-09">2026.04.09</time>
+</div>
+<h2 class="blog-title">ただいま、と玄関を開けたとき、体と心がホッとする家</h2>
+<p class="blog-excerpt">仕事や育児で疲れ果てて帰宅し、「ただいま」と玄関を開けた瞬間。目の前にモノが溢れた景色が広がっていると、体と心がドッと重くなるような気がしませんか？家がストレス…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-08" data-excerpt="毎朝、クローゼットの前に立ち尽くして「服はたくさんあるのに、今日着ていく服がない！」と頭を悩ませていませんか？そして、バタバタと身支度をして家を出る頃には、すっ…" data-search="朝の身支度が心地よく整う、クローゼットの引き算｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.08 朝の身支度が心地よく整う、クローゼットの引き算 毎朝、クローゼットの前に立ち尽くして「服はたくさんあるのに、今日着ていく服がない！」と頭を悩ませていませんか？そして、バタバタと身支度をして家を出る頃には、すっ… 毎朝、クローゼットの前に立ち尽くして「服はたくさんあるのに、今日着ていく服がない！」と頭を悩ませていませんか？そして、バタバタと身支度をして家を出る頃には、すっかり疲れてしまう……。 服選びがしづらくなる理由 朝の時間を心地よく整えるためには、クローゼットの「引き算」が必要です。 クローゼットの中に、サイズが合わない服、着ると気分が下がる服、何年も着ていない服が混ざっていると、脳は無意識に「選択のストレス」を感じます。 クローゼット整理のコツ 今の自分が本当にお気に入りで、自信を持って着られる「1軍の服」だけを厳選して並べる。手持ちの服が一目で見渡せるクローゼットを作れば、朝の身支度はわずか数分で、楽しく完了するようになります。" data-title="朝の身支度が心地よく整う、クローゼットの引き算" href="08-closet-subtraction.html">
+<div class="blog-img-wrap">
+<img alt="totonou_8" src="images/blog/totonou_8.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-08">2026.04.08</time>
+</div>
+<h2 class="blog-title">朝の身支度が心地よく整う、クローゼットの引き算</h2>
+<p class="blog-excerpt">毎朝、クローゼットの前に立ち尽くして「服はたくさんあるのに、今日着ていく服がない！」と頭を悩ませていませんか？そして、バタバタと身支度をして家を出る頃には、すっ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-07" data-excerpt="引っ越しは、人生の中で最も大きな「暮らしのデトックス（解毒）」のチャンスです 。多くの人は、今の荷物をそのまま段ボールに詰めて新しい家に運ぼうとしますが、それは…" data-search="お引っ越しという人生の節目に、持ち物を半分に減らせるとしたら｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.07 お引っ越しという人生の節目に、持ち物を半分に減らせるとしたら 引っ越しは、人生の中で最も大きな「暮らしのデトックス（解毒）」のチャンスです 。多くの人は、今の荷物をそのまま段ボールに詰めて新しい家に運ぼうとしますが、それは… 引っ越しは、人生の中で最も大きな「暮らしのデトックス（解毒）」のチャンスです 。多くの人は、今の荷物をそのまま段ボールに詰めて新しい家に運ぼうとしますが、それは非常にもったいないことです 。 片付けでつまずきやすいポイント 「もし、今の持ち物を半分に減らして新しい生活を始められるとしたら、あなたは何を持っていきますか？」 新居の収納スペースに合わせてモノを選ぶのではなく、これからの新しい人生に「本当に必要なモノ」「ときめくモノ」だけを厳選する 。 今日からできる整え方 使っていない過去の遺物を新居に持っていくために、高い引っ越し代や家賃を払う必要はありません 。引っ越しという節目をキッカケに、身軽で豊かな未来を選び取ってみましょう 。" data-title="お引っ越しという人生の節目に、持ち物を半分に減らせるとしたら" href="07-moving-detox.html">
+<div class="blog-img-wrap">
+<img alt="totonou_7" src="images/blog/totonou_7.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-07">2026.04.07</time>
+</div>
+<h2 class="blog-title">お引っ越しという人生の節目に、持ち物を半分に減らせるとしたら</h2>
+<p class="blog-excerpt">引っ越しは、人生の中で最も大きな「暮らしのデトックス（解毒）」のチャンスです 。多くの人は、今の荷物をそのまま段ボールに詰めて新しい家に運ぼうとしますが、それは…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-06" data-excerpt="「掃除機をかけよう」と思ったとき、床に置いてあるバッグや雑誌、子供のおもちゃをいちいち移動させる（どかす）作業に時間を取られていませんか？この「どかす時間」こそ…" data-search="掃除機をかける前の「どかす時間」を、仕組みでゼロにする｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.06 掃除機をかける前の「どかす時間」を、仕組みでゼロにする 「掃除機をかけよう」と思ったとき、床に置いてあるバッグや雑誌、子供のおもちゃをいちいち移動させる（どかす）作業に時間を取られていませんか？この「どかす時間」こそ… 「掃除機をかけよう」と思ったとき、床に置いてあるバッグや雑誌、子供のおもちゃをいちいち移動させる（どかす）作業に時間を取られていませんか？この「どかす時間」こそが、掃除を面倒にし、家事を滞らせる最大の原因です 。 片付けでつまずきやすいポイント 部屋を綺麗に保つための鉄則は、「床に直接モノを置かない仕組み」を作ることです 。 バッグは床ではなく、壁のフックや専用のカゴに入れる ゴミ箱や観葉植物は、キャスター付きの台に乗せてサッと動かせるようにする コード類はまとめて浮かせて収納する 今日からできる整え方 床にモノがない状態を作れば、掃除機をかけるハードルは劇的に下がり、毎日の家事時間が驚くほど短縮されます 。" data-title="掃除機をかける前の「どかす時間」を、仕組みでゼロにする" href="06-eliminate-shifting-time.html">
+<div class="blog-img-wrap">
+<img alt="totonou_6" src="images/blog/totonou_6.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-06">2026.04.06</time>
+</div>
+<h2 class="blog-title">掃除機をかける前の「どかす時間」を、仕組みでゼロにする</h2>
+<p class="blog-excerpt">「掃除機をかけよう」と思ったとき、床に置いてあるバッグや雑誌、子供のおもちゃをいちいち移動させる（どかす）作業に時間を取られていませんか？この「どかす時間」こそ…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-05" data-excerpt="家族が集まるリビングは, みんなの荷物で溢れて散らかりやすい場所です。「自分の家なのに, どこにいても心が休まらない」と感じている方も多いのではないでしょうか。" data-search="リビングのなかに、たった1箇所だけの「自分の特等席」を｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.05 リビングのなかに、たった1箇所だけの「自分の特等席」を 家族が集まるリビングは, みんなの荷物で溢れて散らかりやすい場所です。「自分の家なのに, どこにいても心が休まらない」と感じている方も多いのではないでしょうか。 家族が集まるリビングは, みんなの荷物で溢れて散らかりやすい場所です。「自分の家なのに, どこにいても心が休まらない」と感じている方も多いのではないでしょうか。 片付けでつまずきやすいポイント 家全体をすぐに片付けるのが難しくても, リビングの中にたった1箇所だけでいいので, あなただけの「特等席」を作ってみてください。 お気に入りの一人がけソファのまわり, あるいはダイニングテーブルの決まった席の周りだけでも, 徹底的にモノを無くし, 大好きなクッションや一輪挿しを置いてみる。 今日からできる整え方 視界に入るノイズをリセットした「聖域」を作ることで, そこに座るだけでいつでも心からリラックスし, エネルギーをチャージできるようになります。" data-title="リビングのなかに、たった1箇所だけの「自分の特等席」を" href="05-my-special-seat.html">
+<div class="blog-img-wrap">
+<img alt="totonou_5" src="images/blog/totonou_5.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-05">2026.04.05</time>
+</div>
+<h2 class="blog-title">リビングのなかに、たった1箇所だけの「自分の特等席」を</h2>
+<p class="blog-excerpt">家族が集まるリビングは, みんなの荷物で溢れて散らかりやすい場所です。「自分の家なのに, どこにいても心が休まらない」と感じている方も多いのではないでしょうか。</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-04" data-excerpt="「片付けなきゃいけないのは分かっているけれど、どうしてもやる気が出ない」そんな風に先延ばしにしてしまうことは誰にでもあります。そんなときは、少し視点を未来に向け…" data-search="1年後の今日、あなたはどんな表情で過ごしていたいですか｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.04 1年後の今日、あなたはどんな表情で過ごしていたいですか 「片付けなきゃいけないのは分かっているけれど、どうしてもやる気が出ない」そんな風に先延ばしにしてしまうことは誰にでもあります。そんなときは、少し視点を未来に向け… 「片付けなきゃいけないのは分かっているけれど、どうしてもやる気が出ない」そんな風に先延ばしにしてしまうことは誰にでもあります。そんなときは、少し視点を未来に向けてみましょう。 片付けでつまずきやすいポイント 1年後の今日、あなたはどんな部屋で、どんな表情で過ごしていたいですか？ 今日からできる整え方 散らかった空間にイライラしながら過ごす1年後か、お気に入りのモノだけに囲まれて穏やかに微笑んでいる1年後か。 それを決めるのは、今日のあなたの小さな一歩です。完璧を目指す必要はありません。1年後の理想の笑顔に向かって、まずは引き出しの1段から見直してみませんか。" data-title="1年後の今日、あなたはどんな表情で過ごしていたいですか" href="04-future-expression.html">
+<div class="blog-img-wrap">
+<img alt="totonou_4" src="images/blog/totonou_4.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-04">2026.04.04</time>
+</div>
+<h2 class="blog-title">1年後の今日、あなたはどんな表情で過ごしていたいですか</h2>
+<p class="blog-excerpt">「片付けなきゃいけないのは分かっているけれど、どうしてもやる気が出ない」そんな風に先延ばしにしてしまうことは誰にでもあります。そんなときは、少し視点を未来に向け…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けマインド" data-date="2026-04-03" data-excerpt="あなたは毎朝、起きた瞬間にどんな景色を目にしていますか？枕元に脱ぎっぱなしの服があったり、床にモノが散乱していたり、ゴチャゴチャした本棚が視界に入ったりしていな…" data-search="朝、いちばんに目に入る景色が教えてくれること｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けマインド 2026.04.03 朝、いちばんに目に入る景色が教えてくれること あなたは毎朝、起きた瞬間にどんな景色を目にしていますか？枕元に脱ぎっぱなしの服があったり、床にモノが散乱していたり、ゴチャゴチャした本棚が視界に入ったりしていな… あなたは毎朝、起きた瞬間にどんな景色を目にしていますか？枕元に脱ぎっぱなしの服があったり、床にモノが散乱していたり、ゴチャゴチャした本棚が視界に入ったりしていないでしょうか。 片付けでつまずきやすいポイント 朝一番に目にする景色は、その日1日の心のコンディションに大きな影響を与えます。起きた瞬間に乱れた空間が目に入ると、脳は無意識のうちに小さなストレスを感じ、憂鬱な気分で1日をスタートすることになってしまいます。 今日からできる整え方 まずは、ベッドや布団のまわり「1メートル」だけで構いません。寝る前にそこだけをすっきりと整えてみてください。 翌朝、目を開けたときに綺麗な空間が広がっているだけで、驚くほどスッキリとした、ポジティブな気持ちで1日を始めることができるようになります。" data-title="朝、いちばんに目に入る景色が教えてくれること" href="03-morning-scenery.html">
+<div class="blog-img-wrap">
+<img alt="totonou_3" src="images/blog/totonou_3.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-03">2026.04.03</time>
+</div>
+<h2 class="blog-title">朝、いちばんに目に入る景色が教えてくれること</h2>
+<p class="blog-excerpt">あなたは毎朝、起きた瞬間にどんな景色を目にしていますか？枕元に脱ぎっぱなしの服があったり、床にモノが散乱していたり、ゴチャゴチャした本棚が視界に入ったりしていな…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けの基本" data-date="2026-04-02" data-excerpt="「明日、急に友達が遊びに来ることになった！」そんなとき、焦って家中をひっくり返して片付けようとしていませんか？限られた時間の中で家全体を完璧にするのは不可能です…" data-search="急な来客の前に。家全体ではなく「ゲストの視線」を整える｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けの基本 2026.04.02 急な来客の前に。家全体ではなく「ゲストの視線」を整える 「明日、急に友達が遊びに来ることになった！」そんなとき、焦って家中をひっくり返して片付けようとしていませんか？限られた時間の中で家全体を完璧にするのは不可能です… 「明日、急に友達が遊びに来ることになった！」そんなとき、焦って家中をひっくり返して片付けようとしていませんか？限られた時間の中で家全体を完璧にするのは不可能ですし、心身ともに疲れてしまいます。 片付けでつまずきやすいポイント 急な来客を心地よく迎えるコツは、家全体ではなく「ゲストの視線が留まる場所」だけに集中して整えることです。 具体的には、以下の3つのスポットだけで十分です。 玄関 （家の第一印象を決める場所。出しっぱなしの靴をしまう） リビングの座る場所 （ゲストが滞在中に一番長く目にする景色） 洗面所・トイレ （必ず使われるプライベートな空間。鏡や水回りをサッと拭く） 今日からできる整え方 他の部屋のドアは閉めておけば問題ありません。ピンポイントで整えることで、焦ることなく、笑顔で大切なゲストを迎え入れることができます。" data-title="急な来客の前に。家全体ではなく「ゲストの視線」を整える" href="02-entrance-hospitality.html">
+<div class="blog-img-wrap">
+<img alt="totonou_2" src="images/blog/totonou_2.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-02">2026.04.02</time>
+</div>
+<h2 class="blog-title">急な来客の前に。家全体ではなく「ゲストの視線」を整える</h2>
+<p class="blog-excerpt">「明日、急に友達が遊びに来ることになった！」そんなとき、焦って家中をひっくり返して片付けようとしていませんか？限られた時間の中で家全体を完璧にするのは不可能です…</p>
+</div>
+</a>
+<a class="blog-card" data-category="片付けの基本" data-date="2026-04-01" data-excerpt="片付けを始めようとするとき、多くの人が「どんな収納グッズを買おうか」「どうやって綺麗に並べようか」と考えがちです。しかし、実はそれがリバウンドの原因になってしま…" data-search="収納の技術よりも先に、描いておきたい「これからの暮らし」｜山梨・甲府の片付け整理収納｜totonou（トトノウ） 片付けの基本 2026.04.01 収納の技術よりも先に、描いておきたい「これからの暮らし」 片付けを始めようとするとき、多くの人が「どんな収納グッズを買おうか」「どうやって綺麗に並べようか」と考えがちです。しかし、実はそれがリバウンドの原因になってしま… 片付けを始めようとするとき、多くの人が「どんな収納グッズを買おうか」「どうやって綺麗に並べようか」と考えがちです。しかし、実はそれがリバウンドの原因になってしまうことが少なくありません。 片付けでつまずきやすいポイント 大切なのは、技術よりも先に「自分はどんな暮らしがしたいのか」という理想のイメージを明確にすることです。ここが曖昧なままモノを動かしても、結局は元の状態に戻ってしまいます。 まずは「朝、どんな気分で目覚めたいか」「家に帰ってきたとき、どんな風にリラックスしたいか」を想像してみてください。 今日からできる整え方 理想の暮らしというゴールがはっきりと見えて初めて、今の自分にとって「残すべきモノ」と「手放すべきモノ」の基準が自然と決まります。片付けは、理想の未来を描くことから始まります。" data-title="収納の技術よりも先に、描いておきたい「これからの暮らし」" href="01-storage-mindset.html">
+<div class="blog-img-wrap">
+<img alt="totonou_1" src="images/blog/totonou_1.jpg"/>
+</div>
+<div class="blog-content">
+<div class="blog-meta">
+<time datetime="2026-04-01">2026.04.01</time>
+</div>
+<h2 class="blog-title">収納の技術よりも先に、描いておきたい「これからの暮らし」</h2>
+<p class="blog-excerpt">片付けを始めようとするとき、多くの人が「どんな収納グッズを買おうか」「どうやって綺麗に並べようか」と考えがちです。しかし、実はそれがリバウンドの原因になってしま…</p>
+</div>
+</a>
+</div>
+</main>
+<footer class="footer">
+<p>© 2026 totonou トトノウ（内藤ちえこ）<span class="ib">All rights reserved.</span></p>
+<p>山梨県の整理収納アドバイザー</p>
+</footer>
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+</script>
+</body>
+</html>

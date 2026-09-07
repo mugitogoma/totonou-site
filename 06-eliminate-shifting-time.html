@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>掃除機をかける前の「どかす時間」を、仕組みでゼロにする｜山梨・甲府の片付け整理収納｜totonou（トトノウ）</title>
+  <meta name="description" content="掃除を面倒にする最大の原因「どかす作業」をなくしませんか？床に直接モノを置かない仕組みを作り、毎日の家事時間を劇的に短縮する整理収納のコツを解説します。">
+  <link rel="canonical" href="https://totonou.me/06-eliminate-shifting-time.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <style>
+    /* ========================================
+      🎨 カラー・フォント設定（共通同期）
+    ======================================== */
+    :root {
+      --bg:        #ffffff;
+      --bg-light:  #edf5fa;
+      --accent:    #5ba3c2;
+      --accent2:   #8ecae6;
+      --accent3:   #2980a8;
+      --text:      #333333; 
+      --sub:       #456375;
+      --line:      #d4e9f4;
+      --line-light: #eee;
+      --white:     #ffffff;
+      --sans:      'Noto Sans JP', sans-serif;
+      --rounded:   'M PLUS Rounded 1c', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body { 
+      max-width: 100vw;
+      overflow-x: hidden; 
+      scroll-behavior: smooth; 
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: #ffffff;
+      color: var(--text);
+      font-size: clamp(14px, 2.5vw, 15px); 
+      font-weight: 400; 
+      line-height: 1.85;
+    }
+
+    .ib {
+      display: inline-block;
+      white-space: nowrap; 
+    }
+    @media (min-width: 769px) {
+      .ib { white-space: normal; }
+    }
+@media (max-width: 768px) {
+}
+
+    /* ========================================
+       Header（共通パーツ）
+    ======================================== */
+    .header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(247, 251, 253, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 12px 6%;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line-light);
+    }
+    .nav-logo {
+      font-family: var(--rounded);
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 45px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-text div { font-size: clamp(1rem, 4vw, 1.3rem); font-weight: 700; line-height: 1; }
+    .nav-logo span { font-size: clamp(0.6rem, 2vw, 0.75rem); font-family: var(--sans); font-weight: 400; letter-spacing: 0.1em; color: var(--sub); display: block; margin-top: 2px; }
+    
+    .header-tel {
+      margin-left: auto;
+      margin-right: clamp(10px, 3vw, 30px);
+      text-decoration: none;
+      color: var(--accent3);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 3vw, 1.1rem);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0; 
+    }
+    .header-tel svg { width: 1em; height: 1em; }
+
+    .menu-btn {
+      background: none; border: none; cursor: pointer; z-index: 1100; width: 30px; height: 24px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .menu-btn span { display: block; width: 100%; height: 2px; background-color: var(--accent); transition: all 0.3s; }
+    .menu-btn.active span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+    .nav-menu {
+      position: fixed; top: 0; right: 0; transform: translateX(100%); visibility: hidden; width: 250px; height: 100vh; background: rgba(247, 251, 253, 0.98); box-shadow: -5px 0 20px rgba(0,0,0,0.1); transition: transform 0.4s ease, visibility 0.4s; z-index: 1050; padding-top: 80px;
+    }
+    .nav-menu.active { transform: translateX(0); visibility: visible; }
+    .nav-menu ul { list-style: none; text-align: left; padding: 0 30px; }
+    .nav-menu ul li { margin-bottom: 25px; border-bottom: 1px solid var(--line-light); padding-bottom: 10px; }
+    .nav-menu ul li a { text-decoration: none; color: var(--text); font-size: 1rem; font-weight: 500; display: block; transition: color 0.3s; }
+    .nav-menu ul li a:hover { color: var(--accent); }
+
+    /* ========================================
+       Main Content Area（ブログ個別記事）
+    ======================================== */
+    .main-layout {
+      padding: 140px 6% 60px;
+      max-width: 860px; 
+      margin: 0 auto;
+    }
+
+    .article-container {
+      background: var(--white);
+      padding: 50px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      border: 1px solid var(--line-light);
+    }
+
+    .blog-meta {
+      font-size: 0.9rem;
+      color: var(--sub);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .blog-category {
+      background: var(--bg-light);
+      color: var(--accent3);
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 4px;
+    }
+
+    .article-title {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 35px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 20px;
+    }
+
+    /* 記事本文の装飾 */
+    
+    .blog-body h2 {
+      font-size: 1.35rem;
+      color: var(--accent3);
+      margin: 42px 0 18px;
+      padding-left: 14px;
+      border-left: 4px solid var(--accent2);
+      font-family: var(--rounded);
+      line-height: 1.5;
+    }
+
+    .blog-body p {
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-align: justify;
+    }
+    .blog-body ul {
+      margin: 0 0 25px 20px;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+    .blog-body ul li {
+      margin-bottom: 8px;
+    }
+
+    /* 画像エリア */
+    .blog-img-wrapper {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .blog-img-wrapper img {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+    .blog-img-caption {
+      font-size: 0.85rem;
+      color: var(--sub);
+      margin-top: 10px;
+    }
+
+    /* 下部：CTAエリア */
+    .blog-cta {
+      background: var(--bg-light);
+      padding: 35px;
+      border-radius: 8px;
+      margin-top: 60px;
+      border-left: 5px solid var(--accent);
+    }
+    .blog-cta h3 {
+      font-size: 1.2rem;
+      color: var(--accent3);
+      margin-bottom: 12px;
+      font-family: var(--rounded);
+    }
+    .blog-cta p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ページナビゲーション */
+    .blog-footer-nav {
+      margin-top: 50px;
+      padding-top: 25px;
+      border-top: 1px solid var(--line-light);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+    .blog-footer-nav a {
+      color: var(--sub);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .blog-footer-nav a:hover {
+      color: var(--accent3);
+    }
+
+    /* ========================================
+       Footer
+    ======================================== */
+    .footer { background: var(--text); color: var(--white); text-align: center; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer p { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin: 5px 0; letter-spacing: 0.05em; }
+
+    /* レスポンシブ調整 */
+    @media (max-width: 768px) {
+      .header { padding: 10px 12px; }
+      .nav-logo img { height: 28px; margin-right: 6px; }
+      .nav-logo-text div { font-size: 1.05rem; }
+      .nav-logo span { font-size: 0.55rem; letter-spacing: 0; white-space: nowrap; }
+      .header-tel { margin-right: 5px; font-size: 0.75rem; gap: 3px; }
+      .menu-btn { width: 24px; }
+      .nav-menu { width: 80%; } 
+
+      .main-layout { padding: 110px 4% 40px; }
+      .article-container { padding: 30px 20px; }
+      .blog-body p, .blog-body ul { font-size: 0.98rem; margin-bottom: 20px; }
+      .blog-cta { padding: 25px; margin-top: 40px; }
+    }
+  
+
+  
+
+.header-blog-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-right: 28px;
+  margin-left: 18px;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.header-blog-btn:hover {
+  opacity: 0.75;
+}
+
+.header-blog-btn .blog-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px !important;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-blog-btn i,
+.header-blog-btn svg {
+  color: var(--accent3);
+  font-size: 0.95rem;
+  width: 1em;
+  height: 1em;
+}
+
+@media (max-width: 768px) {
+  .header-blog-btn {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .header-blog-btn .blog-icon-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header-blog-btn i,
+  .header-blog-btn svg {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== requested final adjustments 2026-05-20 ===== */
+html, body { background: #ffffff !important; }
+body { background: #ffffff !important; }
+.main-layout, .article-container { background-color: #ffffff !important; }
+.blog-body h2 {
+  font-size: clamp(1.4rem, 3.5vw, 2rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  color: var(--text) !important;
+  font-family: var(--sans) !important;
+  margin: 46px 0 18px !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+.blog-body h2::before, .blog-body h2::after { content: none !important; display: none !important; }
+
+.blog-cta {
+  background: #ffffff !important;
+  color: #222222 !important;
+  border: 1px solid #222222 !important;
+  border-left: 1px solid #222222 !important;
+  border-radius: 0 !important;
+  padding: 18px 20px !important;
+  margin-top: 44px !important;
+  box-shadow: none !important;
+}
+.blog-cta h3 {
+  color: #222222 !important;
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+  margin: 0 0 8px !important;
+  font-weight: 700 !important;
+  font-family: var(--sans) !important;
+}
+.blog-cta p {
+  color: #222222 !important;
+  font-size: 0.86rem !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+.header-blog-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  margin-left: 18px !important;
+  margin-right: 28px !important;
+  flex-shrink: 0 !important;
+}
+.header-blog-btn .blog-icon-circle {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 4px !important;
+  background: var(--bg-light) !important;
+  border: 1px solid #000 !important;
+  color: var(--accent3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.62rem !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  font-family: var(--sans) !important;
+  text-transform: lowercase !important;
+}
+.header-blog-btn i, .header-blog-btn svg { display: none !important; }
+@media (max-width: 768px) {
+  .blog-cta {
+    padding: 10px 12px !important;
+    margin-top: 34px !important;
+    font-size: 0.78rem !important;
+  }
+  .blog-cta h3 {
+    font-size: 0.82rem !important;
+    margin-bottom: 5px !important;
+    line-height: 1.35 !important;
+  }
+  .blog-cta p {
+    font-size: 0.72rem !important;
+    line-height: 1.5 !important;
+  }
+  .header-blog-btn {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+  }
+  .header-blog-btn .blog-icon-circle {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.58rem !important;
+  }
+  .nav-menu { padding-top: 58px !important; }
+  .nav-menu ul { padding: 0 24px !important; }
+  .nav-menu ul li {
+    margin-bottom: 10px !important;
+    padding-bottom: 6px !important;
+  }
+  .nav-menu ul li a {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+  }
+}
+
+
+/* requested header blog text black */
+.header-blog-btn .blog-icon-circle {
+  color: #222 !important;
+}
+.header-blog-btn .blog-icon-circle::after {
+  color: #222 !important;
+}
+
+
+/* requested article visual adjustments */
+.article-title,
+.post-title,
+.blog-post-title,
+.article-header,
+.post-header {
+  border-bottom-color: #222 !important;
+}
+.article-title::after,
+.post-title::after,
+.blog-post-title::after,
+.article-header::after,
+.post-header::after,
+.article-meta::after,
+.blog-meta::after {
+  background: #222 !important;
+  border-color: #222 !important;
+}
+.article-body h2,
+.post-body h2,
+.article-content h2,
+.post-content h2,
+.simple-subheading {
+  font-size: clamp(1.25rem, 3.2vw, 1.55rem) !important;
+}
+.article-body h2::before,
+.post-body h2::before,
+.article-content h2::before,
+.post-content h2::before,
+.simple-subheading::before {
+  display: none !important;
+}
+
+
+
+.blog-body h2.article-subheading {
+  font-size: clamp(1.05rem, 2.3vw, 1.28rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+}
+
+
+
+time { color: #000 !important; }
+.article-date, .post-date, .blog-date { color: #000 !important; }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.JPG" alt="totonou｜整理収納" />
+      <div class="nav-logo-text">
+        <div>toto<strong style="color: var(--accent); font-weight: inherit;">n</strong>ou</div>
+        <span>山梨県の整理収納アドバイザー</span>
+      </div>
+    </a>
+
+    <a href="tel:09055338601" class="header-tel">
+      <i class="fas fa-phone-alt"></i> 
+      <span style="white-space: nowrap; word-break: keep-all;">090-5533-8601</span>
+    </a>
+
+    <a href="blog.html" class="header-blog-btn" aria-label="ブログ一覧へ">
+  <span class="blog-icon-circle">blog</span>
+</a>
+
+    <button class="menu-btn" id="menu-btn" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html#about">初めての方へ（ご挨拶）</a></li>
+        <li><a href="index.html#flow">ご利用の流れ</a></li>
+        <li><a href="index.html#services">サービス内容・料金</a></li>
+        <li><a href="index.html#area">対応エリア</a></li> 
+        <li><a href="index.html#before-after">ビフォーアフター実例</a></li>
+        <li><a href="index.html#testimonials">お客様の声</a></li>
+        <li><a href="index.html#profile">プロフィール</a></li>
+        <li><a href="index.html#contact">無料相談（LINE・電話）</a></li>
+        <li><a href="blog.html">ブログ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-layout">
+    <article class="article-container">
+      <div class="blog-meta">
+<time datetime="2026-04-06"> 2026.04.06</time>
+      </div>
+
+      <h1 class="article-title">掃除機をかける前の「どかす時間」を、仕組みでゼロにする</h1>
+
+      <div class="blog-body">
+        <p>「掃除機をかけよう」と思ったとき、床に置いてあるバッグや雑誌、子供のおもちゃをいちいち移動させる（どかす）作業に時間を取られていませんか？この「どかす時間」こそが、掃除を面倒にし、家事を滞らせる最大の原因です 。</p>
+
+        <h2 class="article-subheading">片付けでつまずきやすいポイント</h2>
+        <p>部屋を綺麗に保つための鉄則は、「床に直接モノを置かない仕組み」を作ることです 。</p>
+
+        <div class="blog-img-wrapper">
+          <img src="images/blog/totonou_6.jpg" alt="床にモノが一切なく、お掃除ロボットがスムーズに動いているリビングの写真｜片付け整理収納">
+        </div>
+
+        <ul>
+          <li>バッグは床ではなく、壁のフックや専用のカゴに入れる </li>
+          <li>ゴミ箱や観葉植物は、キャスター付きの台に乗せてサッと動かせるようにする </li>
+          <li>コード類はまとめて浮かせて収納する </li>
+        </ul>
+
+                <h2 class="article-subheading">今日からできる整え方</h2>
+<p>床にモノがない状態を作れば、掃除機をかけるハードルは劇的に下がり、毎日の家事時間が驚くほど短縮されます 。</p>
+      </div>
+
+      <div class="blog-cta">
+        <h3>山梨県の整理収納サポート <br>totonou（トトノウ）</h3>
+        <p>甲府市を中心に山梨県内で出張片付けサポートを行っています。一人では難しい「ちょうどいい暮らし」の具体化から、実際の整理収納まで親身に伴走いたします。まずはお気軽にご相談ください。</p>
+      </div>
+
+      <div class="blog-footer-nav">
+        <a href="05-my-special-seat.html"><i class="fas fa-chevron-left"></i>04/05の記事へ</a>
+        <a href="07-moving-detox.html">04/07の記事へ <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 totonou トトノウ（内藤ちえこ）<span class="ib">All rights reserved.</span></p>
+    <p>山梨県の整理収納アドバイザー</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
